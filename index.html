@@ -1,12 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Mesto</title>
+    <link rel="stylesheet" href="pages/index.css">
 </head>
 <body>
-    
+    <div class="root">
+        <header class="header">
+            <div class="header__logo"></div>
+        </header>
+        <main class="content">
+            <section class="profile">
+                
+                <div class="profile-info">
+                    <img src="images/avatar_kusto.jpg" alt="аватар" class="profile-info__avatar">
+                    <div class="profile-text-info">
+                        <h3 class="profile-text-info__full-name">Жак-Ив Кусто</h3>
+                        <p class="profile-text-info__description">Исследователь океана</p>
+                    </div>
+                    <button class="profile-info__editButton"></button>
+                </div>
+                <button class="profile__addButton"></button>
+            </section>
+            <section class="elements">
+                <block class="element">
+                    <img src="images/karachaevo.jpg" alt="фото" class="element__image">
+                    <h4 class="element__header">Карачаевск</h4>
+                    <button class="element__likeButton"></button>
+                </block>
+                <block class="element">
+                    <img src="images/gora-elbrus.jpg" alt="фото" class="element__image">
+                    <h4 class="element__header">Эльбрус</h4>
+                    <button class="element__likeButton"></button>
+                </block>
+                <block class="element">
+                    <img src="images/john-fowler-9qgKQewttVs-unsplash.jpg" alt="фото" class="element__image">
+                    <h4 class="element__header">Карачаевск</h4>
+                    <button class="element__likeButton"></button>
+                </block>
+                <block class="element">
+                    <img src="images/kalen-emsley-uSFOwYo1qEw-unsplash.jpg" alt="фото" class="element__image">
+                    <h4 class="element__header">Карачаевск</h4>
+                    <button class="element__likeButton"></button>
+                </block>
+                <block class="element">
+                    <img src="images/muradi-vI267iBm2NQ-unsplash.jpg" alt="фото" class="element__image">
+                    <h4 class="element__header">Карачаевск</h4>
+                    <button class="element__likeButton"></button>
+                </block>
+                <block class="element">
+                    <img src="images/roby-allario-k8wwPv2SUiw-unsplash.jpg" alt="фото" class="element__image">
+                    <h4 class="element__header">Карачаевск</h4>
+                    <button class="element__likeButton"></button>
+                </block>
+
+            </section>
+        </main>
+        <footer class="footer">
+            <p class="footer__copyright">© 2020 Mesto Russia</p>
+        </footer>
+        <!-- <div class="form">
+            <div class="form-edit-profile">
+                <h3 class="form-edit-profile__header">Редактировать профиль</h3>
+                <input type="text" class="form-edit-profile__full-name" placeholder="Жак-Ив Кусто">
+                <input type="text" class="form-edit-profile__description" placeholder="Исследователь океана">
+                <button class="form-edit-profile__submit-button">Сохранить</button>
+                <button class="form-edit-profile__close-button"></button>
+            </div>
+            
+        </div> -->
+    </div>
 </body>
 </html>

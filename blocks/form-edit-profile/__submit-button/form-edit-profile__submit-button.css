@@ -1,0 +1,19 @@
+.form-edit-profile__submit-button {
+    width: 83.25%;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.125rem;
+    line-height: 1.22;
+    text-align: center;
+    color: #FFFFFF;
+    background-color: black;
+    height: 50px;
+    border: none;
+    border-radius: 2px;
+}
+.form-edit-profile__submit-button:hover {
+    
+    background-color: #000000CC;
+    
+}

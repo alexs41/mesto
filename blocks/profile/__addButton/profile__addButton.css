@@ -1,0 +1,15 @@
+.profile__addButton {
+    margin: 0;
+    margin-left: auto;
+    height: 50px;
+    width: 150px;
+    background-color: black;
+    border: 2px solid #FFFFFF;
+    border-radius: 2px;
+    background-image: url('../../../images/addButton-icon.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.profile__addButton:hover {
+    opacity: 0.6;
+}
