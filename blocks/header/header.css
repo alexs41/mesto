@@ -5,3 +5,16 @@
     padding-bottom: 41px;
     border-bottom: 1px solid #545454;
 }
+
+@media screen and (max-width: 918px) {
+    .header {
+        width: calc(100vw - 38px);
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .header {
+        padding-top: 28px;
+        padding-bottom: 32px;
+    }
+}

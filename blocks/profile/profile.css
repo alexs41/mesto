@@ -8,3 +8,22 @@
     justify-content: flex-start;
     align-items: center;
 }
+
+@media screen and (max-width: 918px) {
+    .profile {
+        width: calc(100vw - 38px);
+    }
+}
+@media screen and (max-width: 689px) {
+    .profile {
+        flex-direction: column;
+    }
+}
+@media screen and (max-width: 425px) {
+    .profile {
+        flex-direction: column;
+        /* justify-content: center; */
+        /* justify-content: flex-start; */
+        align-items: center;
+    }
+}

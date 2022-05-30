@@ -3,5 +3,17 @@
     padding-top: 66px;
     padding-bottom: 60px;
     max-width: 880px;
-    
+}
+
+@media screen and (max-width: 918px) {
+    .footer {
+        width: calc(100vw - 38px);
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .footer {
+        padding-top: 48px;
+        padding-bottom: 36px;
+    }
 }

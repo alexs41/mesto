@@ -1,6 +1,7 @@
 .element__header {
-    
+    margin: 0;
     margin-left: 21px;
+    padding: 23px 0;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 900;

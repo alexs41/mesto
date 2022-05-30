@@ -4,5 +4,27 @@
     font-style: normal;
     font-weight: 500;
     font-size: 2.625rem;
-    line-height: 1.14;
+    line-height: 1.2;
+    display: inline-block;
+}
+
+@media screen and (max-width: 525px) {
+    .profile-text-info__full-name {
+        font-size: 2rem;
+    }
+}
+@media screen and (max-width: 475px) {
+    .profile-text-info__full-name {
+        font-size: 1.6875rem;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .profile-text-info__full-name {
+        margin: 0 auto;
+        text-align: center;
+        font-size: 1.6875rem;
+        margin-left: 28px;
+        
+    }
 }
