@@ -1,9 +1,8 @@
 .form-edit-profile__full-name {
     width: 83.25%;
     outline: none;
-    border: none;   
-    opacity: 0.2;
-    border-bottom: 1px solid #000000; 
+    border: none;
+    border-bottom: 1px solid #00000033; 
 
     font-family: 'Inter';
     font-style: normal;
