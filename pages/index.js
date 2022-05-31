@@ -11,6 +11,8 @@ const formCloseButton = document.querySelector('.form-edit-profile__close-button
 function openForm() {
     form.classList.remove('form_hidden');
     // document.addEventListener('keypress', closeFormOnQ);
+    fullName.value = document.querySelector('.profile-text-info__full-name').textContent;
+    description.value = document.querySelector('.profile-text-info__description').textContent;
 }
 function closeForm() {
     form.classList.add('form_hidden');
@@ -34,8 +36,9 @@ form.addEventListener('click', function (e) {
 // --------------------------------------------
 let fullName = document.querySelector('.form-edit-profile__full-name');
 let description = document.querySelector('.form-edit-profile__description');
-
 const submitButton = document.querySelector('.form-edit-profile__submit-button');
+
+
 
 function saveButtonAction() {
     document.querySelector('.profile-text-info__full-name').textContent = fullName.value;
@@ -46,3 +49,10 @@ function saveButtonAction() {
 submitButton.addEventListener('click', saveButtonAction);
 // --------------------------------------------
 
+const likeButtons = Array.from(document.querySelectorAll('.element__likeButton'));
+
+likeButtons.forEach((button, index) => {
+    button.addEventListener("click", () => {
+      button.classList.toggle('element__likeButton_active');
+    });
+  });

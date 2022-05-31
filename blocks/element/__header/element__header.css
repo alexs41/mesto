@@ -1,12 +1,19 @@
 .element__header {
-    margin: 0;
-    margin-left: 21px;
+    margin: 0 50px 0 21px;
     padding: 23px 0;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 900;
     font-size: 1.5rem;
     line-height: 1.21;
-
     color: #000000;
+    width: 100%;
+
+    text-overflow: ellipsis;;
+    white-space: nowrap;
+    overflow: hidden; 
+
+    width: fill-available;
+    width: -webkit-fill-available;
+    width: -moz-available;
 }

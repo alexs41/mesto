@@ -1,9 +1,17 @@
 .element {
     background: #FFFFFF;
     border-radius: 10px;
-    width: fit-content;
+    /* width: fit-content; */
     max-width: 580px;
     overflow: hidden;
     position: relative;
     margin: 0 auto;
+
+    width: fill-available;
+    width: -webkit-fill-available;
+    width: -moz-available;
+    
+    /* text-overflow: ellipsis; */
+    /* white-space: nowrap; */
+    
 }
