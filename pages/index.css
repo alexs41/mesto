@@ -27,12 +27,12 @@
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 
-@import url(../blocks/form/form.css);
-@import url(../blocks/form/_hidden/form_hidden.css);
+@import url(../blocks/popup/popup.css);
+@import url(../blocks/popup/_opened/popup_opened.css);
+@import url(../blocks/popup/__close-button/popup__close-button.css);
 
 @import url(../blocks/form-edit-profile/form-edit-profile.css);
 @import url(../blocks/form-edit-profile/__header/form-edit-profile__header.css);
 @import url(../blocks/form-edit-profile/__submit-button/form-edit-profile__submit-button.css);
-@import url(../blocks/form-edit-profile/__close-button/form-edit-profile__close-button.css);
 @import url(../blocks/form-edit-profile/__full-name/form-edit-profile__full-name.css);
 @import url(../blocks/form-edit-profile/__description/form-edit-profile__description.css);

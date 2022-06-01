@@ -1,35 +1,29 @@
 const button = document.querySelector('.profile-text-info__editButton');
-const form = document.querySelector('.form');
-const formCloseButton = document.querySelector('.form-edit-profile__close-button');
+const popup = document.querySelector('.popup');
+const popupCloseButton = document.querySelector('.popup__close-button');
 
-// console.log(button);
-// function closeFormOnQ(e) {
-//     if (e.code === 'KeyQ') {
-//         closeForm();
-//     }
-// }
-function openForm() {
-    form.classList.remove('form_hidden');
-    // document.addEventListener('keypress', closeFormOnQ);
+function openPopup() {
+    popup.classList.add('popup_opened');
+    // document.addEventListener('keypress', closePopupOnQ);
     fullName.value = document.querySelector('.profile-text-info__full-name').textContent;
     description.value = document.querySelector('.profile-text-info__description').textContent;
 }
-function closeForm() {
-    form.classList.add('form_hidden');
-    // document.removeEventListener('keypress', closeFormOnQ);
+function closePopup() {
+    popup.classList.remove('popup_opened');
+    // document.removeEventListener('keypress', closePopupOnQ);
 }
 
 button.addEventListener('click', function () {
-    openForm();
+    openPopup();
 });
 
-formCloseButton.addEventListener('click', function () {
-    closeForm();
+popupCloseButton.addEventListener('click', function () {
+    closePopup();
 });
 
-form.addEventListener('click', function (e) {
+popup.addEventListener('click', function (e) {
         if (e.target === e.currentTarget) {
-            closeForm();
+            closePopup();
         }
     });
 
@@ -43,7 +37,7 @@ const submitButton = document.querySelector('.form-edit-profile__submit-button')
 function saveButtonAction() {
     document.querySelector('.profile-text-info__full-name').textContent = fullName.value;
     document.querySelector('.profile-text-info__description').textContent = description.value;
-    closeForm();
+    closePopup();
 }
 
 submitButton.addEventListener('click', saveButtonAction);
