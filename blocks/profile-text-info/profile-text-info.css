@@ -1,3 +1,9 @@
+/* .profile-text-info {
+    max-width: calc(100% - 195px);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+} */
 @media screen and (max-width: 425px) {
     .profile-text-info {
         margin-top: 28px;
