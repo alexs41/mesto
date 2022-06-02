@@ -9,9 +9,9 @@
     color: #000000;
     width: 100%;
 
-    text-overflow: ellipsis;;
+    text-overflow: ellipsis;
     white-space: nowrap;
-    overflow: hidden; 
+    overflow: hidden;
 
     width: fill-available;
     width: -webkit-fill-available;
