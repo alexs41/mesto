@@ -1,0 +1,14 @@
+.profile-info-container {
+    display: inline-flex;
+    max-width: 100%;
+    max-width: calc(100% - 140px);
+    margin: 0;
+    
+}
+@media screen and (max-width: 425px) {
+    .profile-info-container {
+        max-width: calc(100% - 40px);
+        width: calc(100% - 40px);
+        justify-content: center;
+    }
+}

@@ -10,6 +10,8 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+
+    max-width: 100%;
 }
 
 @media screen and (max-width: 425px) {
@@ -17,5 +19,6 @@
         text-align: center;
         font-size: 0.875rem;
         line-height: 1.22;
+        /* max-width: 100%; */
     }
 }

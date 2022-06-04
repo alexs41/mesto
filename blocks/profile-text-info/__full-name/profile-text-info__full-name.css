@@ -5,11 +5,13 @@
     font-weight: 500;
     font-size: 2.625rem;
     line-height: 1.2;
-    display: inline-block;
+    /* display: inline-block; */
 
-    /* text-overflow: ellipsis;
+    text-overflow: ellipsis;
     white-space: nowrap;
-    overflow: hidden; */
+    overflow: hidden;
+
+    max-width: 100%;
 }
 
 @media screen and (max-width: 525px) {
@@ -25,10 +27,11 @@
 
 @media screen and (max-width: 425px) {
     .profile-text-info__full-name {
-        margin: 0 auto;
+        /* margin-left: auto; */
+        /* margin: 0 auto; */
         text-align: center;
         font-size: 1.6875rem;
-        margin-left: 28px;
-        
+        /* margin-left: 28px; */
+        /* max-width: calc(100% - 60px); */
     }
 }

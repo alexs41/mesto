@@ -11,9 +11,20 @@
     height: 50px;
     border: none;
     border-radius: 2px;
+    margin-bottom: 37px;
+    margin-top: 25px;
 }
 .form-edit-profile__submit-button:hover {
     
     background-color: #000000CC;
     
+}
+
+@media screen and (max-width: 425px) {
+    .form-edit-profile__submit-button {
+        font-size: 0.875rem;
+        margin-bottom: 25px;
+        height: 46px;
+        margin-top: 22px;
+    }
 }

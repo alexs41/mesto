@@ -1,5 +1,6 @@
 .form-edit-profile__description {
     width: 83.25%;
+    margin: 0;
     outline: none;
     border: none;
     border-bottom: 1px solid #00000033;
@@ -7,6 +8,6 @@
     font-style: normal;
     font-weight: 400;
     font-size: 0.875rem;
-    line-height: 1.214;
+    line-height: 2.214;
     color: #000000;
 }

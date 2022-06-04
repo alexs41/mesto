@@ -1,11 +1,16 @@
-/* .profile-text-info {
-    max-width: calc(100% - 195px);
+.profile-text-info {
+    max-width: calc(100% - 45px);
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-} */
+    /* display: flex; */
+}
 @media screen and (max-width: 425px) {
     .profile-text-info {
+        margin-left: 22px;
         margin-top: 28px;
+        max-width: calc(100% - 38px);
+        display: inline-block;
+
     }
 }

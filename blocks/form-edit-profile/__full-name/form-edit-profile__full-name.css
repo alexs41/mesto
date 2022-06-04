@@ -1,4 +1,5 @@
 .form-edit-profile__full-name {
+    margin: 0;
     width: 83.25%;
     outline: none;
     border: none;
@@ -8,7 +9,7 @@
     font-style: normal;
     font-weight: 400;
     font-size: 0.875rem;
-    line-height: 1.214;
+    line-height: 2.214;
 
     color: #000000;
 }
