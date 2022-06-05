@@ -2,15 +2,19 @@
     background-image: url(../../../images/logo.svg);
     background-size: contain;
     background-repeat: no-repeat;
-    /* background-position: center; */
-    /* width: 142px; */
+    width: 142px;
     height: 33px;
+  }
+
+  @media screen and (max-width: 934px) {
+    .header__logo {
+      margin-left: 27px;
+    }
   }
 
   @media screen and (max-width: 425px) {
     .header__logo {
-      /* width: 104px; */
+      width: 104px;
       height: 24px;
-      margin-left: 27px;
     }
   }

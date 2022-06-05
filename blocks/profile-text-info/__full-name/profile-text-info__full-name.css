@@ -1,16 +1,13 @@
 .profile-text-info__full-name {
     margin: 0;
-    font-family: 'Inter';
+    font-family: 'Inter', Arial, sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 2.625rem;
     line-height: 1.2;
-    /* display: inline-block; */
-
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-
     max-width: 100%;
 }
 
@@ -19,6 +16,7 @@
         font-size: 2rem;
     }
 }
+
 @media screen and (max-width: 475px) {
     .profile-text-info__full-name {
         font-size: 1.6875rem;
@@ -27,11 +25,7 @@
 
 @media screen and (max-width: 425px) {
     .profile-text-info__full-name {
-        /* margin-left: auto; */
-        /* margin: 0 auto; */
         text-align: center;
         font-size: 1.6875rem;
-        /* margin-left: 28px; */
-        /* max-width: calc(100% - 60px); */
     }
 }

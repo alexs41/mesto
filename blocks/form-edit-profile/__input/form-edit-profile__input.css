@@ -1,10 +1,10 @@
-.form-edit-profile__description {
+.form-edit-profile__input {
     width: 83.25%;
     margin: 0;
     outline: none;
     border: none;
     border-bottom: 1px solid #00000033;
-    font-family: 'Inter';
+    font-family: 'Inter', Arial, sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 0.875rem;
