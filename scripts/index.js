@@ -7,6 +7,7 @@ const addElementButton = document.querySelector('.profile__add-button');
 
 const popups = document.querySelectorAll('.popup');
 const popupCloseButtons = document.querySelectorAll('.popup__close-button');
+const elementTrashButtons = document.querySelectorAll('.element__trash-button');
 
 function openPopup() {
     popup.classList.add('popup_opened');
@@ -39,6 +40,12 @@ button.addEventListener('click', function () {
 popupCloseButtons.forEach(function(button) {
     button.addEventListener('click', function () {
         closePopup();
+    });
+});
+
+elementTrashButtons.forEach(function(button) {
+    button.addEventListener('click', function () {
+        button.closest('.element').remove();
     });
 });
 
