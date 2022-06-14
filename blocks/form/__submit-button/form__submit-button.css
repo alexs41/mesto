@@ -1,4 +1,4 @@
-.form-edit-profile__submit-button {
+.form__submit-button {
     padding: 0;
     width: 83.25%;
     font-family: 'Inter', Arial, sans-serif;
@@ -15,12 +15,12 @@
     margin-bottom: 37px;
     margin-top: 25px;
 }
-.form-edit-profile__submit-button:hover {
+.form__submit-button:hover {
     background-color: #000000CC;
 }
 
 @media screen and (max-width: 425px) {
-    .form-edit-profile__submit-button {
+    .form__submit-button {
         font-size: 0.875rem;
         margin-bottom: 25px;
         height: 46px;
