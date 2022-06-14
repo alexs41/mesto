@@ -84,3 +84,34 @@ likeButtons.forEach((button, index) => {
       button.classList.toggle('element__like-button_active');
     });
   });
+
+  //---------------------------------------
+const submitButtonAddElement = document.querySelector(".form__submit-button_add-element");
+
+submitButtonAddElement.addEventListener('click', submitButtonAddElementAction);
+
+function submitButtonAddElementAction() {
+    renderElement();
+}
+
+  const elements = document.querySelector(".elements");
+  const elementTemplate = document.querySelector(".element_template").content;
+
+function renderElement() {
+	const newElement = elementTemplate.querySelector('.element').cloneNode(true);
+	newElement.querySelector('.element__header').innerText = 'аголовок картинки';
+    newElement.querySelector('.element__image').src = 'images/dombai.jpg';
+
+	newElement.querySelector('.element__trash-button').addEventListener('click', () => {
+		newElement.closest('.element').remove();
+	});
+
+    newElement.querySelector('.element__like-button').addEventListener('click', () => {
+		newElement.querySelector('.element__like-button').classList.toggle('element__like-button_active');
+	});
+
+	elements.insertAdjacentElement('afterbegin', newElement);
+};
+
+// function deleteElement
+// function likeElement
