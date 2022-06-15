@@ -9,6 +9,9 @@ const popups = document.querySelectorAll('.popup');
 const popupCloseButtons = document.querySelectorAll('.popup__close-button');
 const elementTrashButtons = document.querySelectorAll('.element__trash-button');
 
+const newElementName = document.querySelector('.form__input_element-name');
+const newElementPictureLink = document.querySelector('.form__input_picture-link');
+
 function openPopup() {
     popup.classList.add('popup_opened');
     fullName.value = document.querySelector('.profile-text-info__full-name').textContent;
@@ -23,6 +26,8 @@ function closePopup() {
 //------------------------ addElementButton start
 function openAddElementPopup() {
     addElementPopup.classList.add('popup_opened');
+    newElementName.value = '';
+    newElementPictureLink.value = '';
 }
 addElementButton.addEventListener('click', function () {
     openAddElementPopup();
@@ -92,6 +97,9 @@ submitButtonAddElement.addEventListener('click', submitButtonAddElementAction);
 
 function submitButtonAddElementAction() {
     renderElement();
+    newElementName.value = '';
+    newElementPictureLink.value = '';
+
 }
 
   const elements = document.querySelector(".elements");
@@ -99,8 +107,11 @@ function submitButtonAddElementAction() {
 
 function renderElement() {
 	const newElement = elementTemplate.querySelector('.element').cloneNode(true);
-	newElement.querySelector('.element__header').innerText = 'аголовок картинки';
-    newElement.querySelector('.element__image').src = 'images/dombai.jpg';
+	// newElement.querySelector('.element__header').innerText = 'аголовок картинки';
+    // newElement.querySelector('.element__image').src = 'images/dombai.jpg';
+    
+    newElement.querySelector('.element__header').innerText = newElementName.value;
+    newElement.querySelector('.element__image').src = newElementPictureLink.value;
 
 	newElement.querySelector('.element__trash-button').addEventListener('click', () => {
 		newElement.closest('.element').remove();
