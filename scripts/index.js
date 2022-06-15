@@ -12,6 +12,9 @@ const elementTrashButtons = document.querySelectorAll('.element__trash-button');
 const newElementName = document.querySelector('.form__input_element-name');
 const newElementPictureLink = document.querySelector('.form__input_picture-link');
 
+const elementImages = document.querySelectorAll('.element__image');
+const popupElementImage = document.querySelector('.popup_element-image');
+
 function openPopup() {
     popup.classList.add('popup_opened');
     fullName.value = document.querySelector('.profile-text-info__full-name').textContent;
@@ -120,9 +123,33 @@ function renderElement() {
     newElement.querySelector('.element__like-button').addEventListener('click', () => {
 		newElement.querySelector('.element__like-button').classList.toggle('element__like-button_active');
 	});
-
+    
+    newElement.querySelector('.element__image').addEventListener("click", () => {
+        openPopupElementImage(newElement.querySelector('.element__image'));
+    });
+    
 	elements.insertAdjacentElement('afterbegin', newElement);
 };
 
 // function deleteElement
 // function likeElement
+//-----------------------------------------------
+
+
+elementImages.forEach((image, index) => {
+    image.addEventListener("click", () => {
+        openPopupElementImage(image);
+    });
+  });
+
+  //-------------------------------------
+  // function openPopupElementImage
+
+
+function openPopupElementImage(image) {
+    console.log('openPopupElementImage сработал');
+    popupElementImage.classList.add('popup_opened');
+    const elementHeader = image.closest('.element').querySelector('.element__header').textContent;
+    popupElementImage.querySelector('.figure__caption').innerText = elementHeader;
+    popupElementImage.querySelector('.figure__image').src = image.src;
+};
