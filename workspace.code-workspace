@@ -5,6 +5,9 @@
 		},
 		{
 			"path": "../russian-travel"
+		},
+		{
+			"path": "../../Desktop/test"
 		}
 	],
 	"settings": {}

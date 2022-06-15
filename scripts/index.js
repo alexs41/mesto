@@ -15,6 +15,8 @@ const newElementPictureLink = document.querySelector('.form__input_picture-link'
 const elementImages = document.querySelectorAll('.element__image');
 const popupElementImage = document.querySelector('.popup_element-image');
 
+
+
 function openPopup() {
     popup.classList.add('popup_opened');
     fullName.value = document.querySelector('.profile-text-info__full-name').textContent;
@@ -102,7 +104,7 @@ function submitButtonAddElementAction() {
     renderElement();
     newElementName.value = '';
     newElementPictureLink.value = '';
-
+    closePopup();
 }
 
   const elements = document.querySelector(".elements");
@@ -147,7 +149,6 @@ elementImages.forEach((image, index) => {
 
 
 function openPopupElementImage(image) {
-    console.log('openPopupElementImage сработал');
     popupElementImage.classList.add('popup_opened');
     const elementHeader = image.closest('.element').querySelector('.element__header').textContent;
     popupElementImage.querySelector('.figure__caption').innerText = elementHeader;
