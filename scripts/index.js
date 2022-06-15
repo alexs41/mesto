@@ -28,6 +28,8 @@ function openPopup() {
 function closePopup() {
     let popupOpened = document.querySelector('.popup_opened');
     popupOpened.classList.remove('popup_opened');
+    newElementName.removeEventListener('keypress', addElementEnter);
+    newElementPictureLink.removeEventListener('keypress', addElementEnter);
 }
 
 button.addEventListener('click', function () {
@@ -111,12 +113,14 @@ function openAddElementPopup() {
     addElementPopup.classList.add('popup_opened');
     newElementName.value = '';
     newElementPictureLink.value = '';
+    newElementName.addEventListener('keypress', addElementEnter);
+    newElementPictureLink.addEventListener('keypress', addElementEnter);
 }
+
 addElementButton.addEventListener('click', function () {
     openAddElementPopup();
 });
 //------------------------ addElementButton end
-
 
 elementTrashButtons.forEach(function(button) {
     button.addEventListener('click', function () {
@@ -134,18 +138,26 @@ popups.forEach(function(popup) {
 
 const submitButtonAddElement = document.querySelector(".form__submit-button_add-element");
 
-submitButtonAddElement.addEventListener('click', () => {
-            const element = {
-                name: undefined,
-                link: undefined
-            };
-            // element.name = 'Заголовок фото';
-            // element.link = 'ссылка на фото';
+function addElement() {
+  const element = {
+    name: undefined,
+    link: undefined
+  };
+  element.name = document.querySelector('.form__input_element-name').value;
+  element.link = document.querySelector('.form__input_picture-link').value;
+  createElement(element);
+  closePopup();
+}
 
-            element.name = document.querySelector('.form__input_element-name').value;
-            element.link = document.querySelector('.form__input_picture-link').value;
-            createElement(element);
-         }); // обработчик на кнопку сохранения добавленного элемента
+function addElementEnter(e) {
+  if (e.keyCode == 13) {
+    addElement()
+  }
+}
+
+submitButtonAddElement.addEventListener('click', () => {
+  addElement();
+  }); // обработчик на кнопку сохранения добавленного элемента
 
 function openPopupElementImage(image) {
     popupElementImage.classList.add('popup_opened');
