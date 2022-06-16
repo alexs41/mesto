@@ -10,5 +10,7 @@
 			"path": "../../Desktop/test"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "mesto"
+	}
 }
