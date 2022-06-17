@@ -26,7 +26,7 @@ const description = document.querySelector('.form__input_description');
 const submitButtonFormEditProfile = document.querySelector('.form__submit-button_edit-profile');
 const submitButtonAddElement = document.querySelector(".form__submit-button_add-element");
 
-const formEditProfile = document.querySelector('.form__edit-profile');
+const formEditProfile = document.querySelector('.form_edit-profile');
 const formAddElement = document.querySelector('.form_add-element');
 
 function openPopup(popup) {
