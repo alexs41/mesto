@@ -17,6 +17,7 @@
 }
 .form__submit-button:hover {
     background-color: #000000CC;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 425px) {
