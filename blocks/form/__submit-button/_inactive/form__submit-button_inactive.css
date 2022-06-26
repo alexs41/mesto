@@ -1,0 +1,6 @@
+.form__submit-button_inactive {
+    color: #000000;
+    opacity: 0.2;
+    background-color: white;
+    border: 1px solid #000000;
+}

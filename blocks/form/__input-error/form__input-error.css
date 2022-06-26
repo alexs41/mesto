@@ -1,0 +1,9 @@
+.form__input-error {
+    width: 83.25%;
+    font-family: 'Inter', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.75rem;
+    line-height: 1.25;
+    color: #FF0000;
+}

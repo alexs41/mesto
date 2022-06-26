@@ -39,9 +39,13 @@
 @import url(../blocks/form/form.css);
 @import url(../blocks/form/__header/form__header.css);
 @import url(../blocks/form/__submit-button/form__submit-button.css);
+@import url(../blocks/form/__submit-button/_inactive/form__submit-button_inactive.css);
 
 @import url(../blocks/form/__input/form__input.css);
 
 @import url(../blocks/figure/figure.css);
 @import url(../blocks/figure/__caption/figure__caption.css);
 @import url(../blocks/figure/__image/figure__image.css);
+
+@import url(../blocks/form/__input/_type_error/form__input_type_error.css);
+@import url(../blocks/form/__input-error/form__input-error.css);

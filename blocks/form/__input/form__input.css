@@ -11,3 +11,7 @@
     line-height: 2.214;
     color: #000000;
 }
+
+.form__input:invalid:required {
+    /* validationMessage: 'Вы пропустили это поле.'; */
+  }

@@ -35,10 +35,13 @@
         </footer>
         <div class="popup popup_edit-profile">
             <div class="popup__container">
-                <form class="form form_edit-profile" onsubmit="return false">
+                <form class="form form_edit-profile" onsubmit="return false" novalidate>
                     <h3 class="form__header">Редактировать профиль</h3>
-                    <input type="text" class="form__input form__input_full-name" placeholder="Жак-Ив Кусто">
-                    <input type="text" class="form__input form__input_description" placeholder="Исследователь океана">
+                    <input id="full-name-input" type="text" class="form__input form__input_full-name" placeholder="Жак-Ив Кусто" required minlength="2" maxlength="40">
+                    <span class="full-name-input-error form__input-error">Вы пропустили это поле.</span>
+
+                    <input id="description-input" type="text" class="form__input form__input_description" placeholder="Исследователь океана" required minlength="2" maxlength="200">
+                    <span class="description-input-error form__input-error">Вы пропустили это поле.</span>
                     <button class="form__submit-button form__submit-button_edit-profile" type="submit">Сохранить</button>
                     <button class="popup__close-button" type="button"></button>
                 </form>
@@ -48,9 +51,13 @@
             <div class="popup__container">
                 <form class="form form_add-element" onsubmit="return false">
                     <h3 class="form__header">Новое место</h3>
-                    <input type="text" class="form__input form__input_element-name" placeholder="Название">
-                    <input type="text" class="form__input form__input_picture-link" placeholder="Ссылка на картинку">
-                    <button class="form__submit-button form__submit-button_add-element" type="submit">Сохранить</button>
+                    <input id="element-name-input" type="text" class="form__input form__input_element-name" placeholder="Название" required minlength="2" maxlength="40">
+                    <span class="element-name-input-error form__input-error">Вы пропустили это поле.</span>
+
+                    <input id="picture-link-input" type="url" class="form__input form__input_picture-link" placeholder="Ссылка на картинку" required>
+                    <span class="picture-link-input-error form__input-error">Вы пропустили это поле.</span>
+
+                    <button class="form__submit-button form__submit-button_add-element" type="submit">Создать</button>
                     <button class="popup__close-button" type="button"></button>
                 </form>
             </div>
