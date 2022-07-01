@@ -32,6 +32,9 @@ const formAddElement = document.querySelector('.form_add-element');
 const profileFullName = document.querySelector('.profile-text-info__full-name');
 const profileDescription= document.querySelector('.profile-text-info__description');
 
+fullName.value = profileFullName.textContent;
+description.value = profileDescription.textContent;
+
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupEsc);
@@ -49,8 +52,8 @@ function closePopup(popup) {
 }
 
 function openPopupEditProfile() { 
-  fullName.value = profileFullName.textContent;
-  description.value = profileDescription.textContent; //заполняем поля формы 
+  // fullName.value = profileFullName.textContent;
+  // description.value = profileDescription.textContent; //заполняем поля формы 
   openPopup(popupEditProfile); //вызываем функцию для открытия попапа 
 }
 

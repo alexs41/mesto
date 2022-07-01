@@ -31,7 +31,6 @@ const showInputError = (formElement, inputElement, errorMessage, {inputErrorClas
       // Если поле не валидно, колбэк вернёт true
       // Обход массива прекратится и вся функция
       // hasInvalidInput вернёт true
-  
       return !inputElement.validity.valid;
     });
   };
@@ -49,9 +48,15 @@ const showInputError = (formElement, inputElement, errorMessage, {inputErrorClas
   const setEventListeners = (formElement, {inputSelector, submitButtonSelector, ...rest}) => {
     const inputList = Array.from(formElement.querySelectorAll(inputSelector));
     const buttonElement = formElement.querySelector(submitButtonSelector);
-  
+    
+    inputList.forEach((inputElement) => {
+        checkInputValidity(formElement, inputElement, rest);
+        // чтобы проверять его при изменении любого из полей
+        toggleButtonState(inputList, buttonElement, rest);
+    });
+    // checkInputValidity(formElement, inputElement, rest);
     // чтобы проверить состояние кнопки в самом начале
-    toggleButtonState(inputList, buttonElement, rest);
+    // toggleButtonState(inputList, buttonElement, rest);
   
     inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', function () {
@@ -85,4 +90,4 @@ const showInputError = (formElement, inputElement, errorMessage, {inputErrorClas
     inactiveButtonClass: 'form__submit-button_inactive',
     inputErrorClass: 'form__input_type_error',
     errorClass: 'form__input-error'
-  }); 
+  });
