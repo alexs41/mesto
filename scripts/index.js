@@ -1,10 +1,8 @@
 const profileEditButton = document.querySelector('.profile-info-container__edit-button');
 const popupEditProfile = document.querySelector('.popup_edit-profile');
 
-const popupOpened = document.querySelector('.popup_opened');
 const popupAddElement = document.querySelector('.popup_add-element');
 
-const popupCloseButton = document.querySelector('.popup__close-button');
 const addElementButton = document.querySelector('.profile__add-button');
 
 const popups = document.querySelectorAll('.popup');
@@ -13,7 +11,6 @@ const popupCloseButtons = document.querySelectorAll('.popup__close-button');
 const newElementName = document.querySelector('.form__input_element-name');
 const newElementPictureLink = document.querySelector('.form__input_picture-link');
 
-const elementImages = document.querySelectorAll('.element__image');
 const popupElementImage = document.querySelector('.popup_element-image');
 const popupElementImageFigureImage = popupElementImage.querySelector('.figure__image');
 const popupElementImageFigureCaption = popupElementImage.querySelector('.figure__caption');
@@ -52,12 +49,12 @@ function closePopup(popup) {
 }
 
 function openPopupEditProfile() { 
-  // fullName.value = profileFullName.textContent;
-  // description.value = profileDescription.textContent; //заполняем поля формы 
+  fullName.value = profileFullName.textContent;
+  description.value = profileDescription.textContent; //заполняем поля формы 
   openPopup(popupEditProfile); //вызываем функцию для открытия попапа 
 }
 
-function submitButtonEditProfileAction() {
+function handleProfileFormSubmit() {
   profileFullName.textContent = fullName.value;
   profileDescription.textContent = description.value;
   closePopup(popupEditProfile);
@@ -75,8 +72,9 @@ function createElement(card) {
       newElement.closest('.element').remove();
     }); // вешаем обработчик на кнопку удаления
 
-    newElement.querySelector('.element__like-button').addEventListener('click', () => {
-      newElement.querySelector('.element__like-button').classList.toggle('element__like-button_active');
+    const likeButton = newElement.querySelector('.element__like-button');
+    likeButton.addEventListener('click', () => {
+      likeButton.classList.toggle('element__like-button_active');
     }); // вешаем обработчик на кнопку Like
 
     newElementImage.addEventListener("click", () => {
@@ -95,7 +93,6 @@ initialCards.forEach((card, index) => {
 });
 
 addElementButton.addEventListener('click', function () {
-  formAddElement.reset();
   openPopup(popupAddElement);
 });
 
@@ -105,6 +102,9 @@ function addElementFromPopup() {
   element.link = newElementPictureLink.value;
   addElement(createElement(element));
   closePopup(popupAddElement);
+  submitButtonAddElement.classList.add('form__submit-button_inactive');
+  submitButtonAddElement.setAttribute('disabled', 'disabled');
+  formAddElement.reset();
 }
 
 function openPopupElementImage(cardName, imageLink) {
@@ -118,7 +118,7 @@ profileEditButton.addEventListener('click', function () {
     openPopupEditProfile();
 }); // обработчик на кнопку открытия попап редактирования профиля
 
-formEditProfile.addEventListener('submit', submitButtonEditProfileAction);
+formEditProfile.addEventListener('submit', handleProfileFormSubmit);
 
 popups.forEach( popup => {
   popup.addEventListener('mousedown', (evt) => { 

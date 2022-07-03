@@ -40,23 +40,19 @@ const showInputError = (formElement, inputElement, errorMessage, {inputErrorClas
     if (hasInvalidInput(inputList)) {
       // сделай кнопку неактивной
       buttonElement.classList.add(inactiveButtonClass);
+      buttonElement.setAttribute('disabled', 'disabled');
     } else {
       // иначе сделай кнопку активной
       buttonElement.classList.remove(inactiveButtonClass);
+      buttonElement.removeAttribute('disabled');
     }
   };
   const setEventListeners = (formElement, {inputSelector, submitButtonSelector, ...rest}) => {
     const inputList = Array.from(formElement.querySelectorAll(inputSelector));
     const buttonElement = formElement.querySelector(submitButtonSelector);
     
-    inputList.forEach((inputElement) => {
-        checkInputValidity(formElement, inputElement, rest);
-        // чтобы проверять его при изменении любого из полей
-        toggleButtonState(inputList, buttonElement, rest);
-    });
-    // checkInputValidity(formElement, inputElement, rest);
     // чтобы проверить состояние кнопки в самом начале
-    // toggleButtonState(inputList, buttonElement, rest);
+    toggleButtonState(inputList, buttonElement, rest);
   
     inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', function () {
