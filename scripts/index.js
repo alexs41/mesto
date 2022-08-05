@@ -1,3 +1,48 @@
+import Card from './Card.js';
+import CardsBlock from './CardsBlock.js';
+// import * as all from './FormValidator.js';
+
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+//-------------- старые переменные
+const cardsContainer = document.querySelector(".elements");
+const elementTemplate = document.querySelector(".element_template").content;
+//----------------
+// const container = cardsContainer;
+
+var createCard = null;
+
+initialCards.forEach((card, index) => {
+  createCard = new Card(card.link, card.name);
+  createCard.render(cardsContainer);
+  createCard = null;
+});
+
+
 const profileEditButton = document.querySelector('.profile-info-container__edit-button');
 const popupEditProfile = document.querySelector('.popup_edit-profile');
 
@@ -18,8 +63,7 @@ const popupElementImage = document.querySelector('.popup_element-image');
 const popupElementImageFigureImage = popupElementImage.querySelector('.figure__image');
 const popupElementImageFigureCaption = popupElementImage.querySelector('.figure__caption');
 
-const cardsContainer = document.querySelector(".elements");
-const elementTemplate = document.querySelector(".element_template").content;
+
 
 const fullName = document.querySelector('.form__input_full-name');
 const description = document.querySelector('.form__input_description');
@@ -90,9 +134,9 @@ function addElement(card) {
   cardsContainer.prepend(card);
 }
 
-initialCards.forEach((card, index) => {
-  addElement(createElement(card));
-});
+// initialCards.forEach((card, index) => {
+//   addElement(createElement(card));
+// });
 
 addElementButton.addEventListener('click', function () {
   formAddElement.reset();
