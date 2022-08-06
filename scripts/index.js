@@ -1,5 +1,5 @@
 import Card from './Card.js';
-import CardsBlock from './CardsBlock.js';
+import FormValidator from './FormValidator.js';
 // import * as all from './FormValidator.js';
 
 const initialCards = [
@@ -37,11 +37,10 @@ const elementTemplate = document.querySelector(".element_template").content;
 var createCard = null;
 
 initialCards.forEach((card, index) => {
-  createCard = new Card(card.link, card.name);
+  createCard = new Card(card.name, card.link, elementTemplate, openPopup);
   createCard.render(cardsContainer);
   createCard = null;
 });
-
 
 const profileEditButton = document.querySelector('.profile-info-container__edit-button');
 const popupEditProfile = document.querySelector('.popup_edit-profile');
@@ -64,7 +63,6 @@ const popupElementImageFigureImage = popupElementImage.querySelector('.figure__i
 const popupElementImageFigureCaption = popupElementImage.querySelector('.figure__caption');
 
 
-
 const fullName = document.querySelector('.form__input_full-name');
 const description = document.querySelector('.form__input_description');
 const submitButtonFormEditProfile = document.querySelector('.form__submit-button_edit-profile');
@@ -83,6 +81,7 @@ function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupEsc);
 }
+
 function closePopupEsc(e) {
   if (e.key === 'Escape') {
       const popupOpened = document.querySelector('.popup_opened');
