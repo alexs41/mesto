@@ -115,8 +115,6 @@ function addElementFromPopup() {
   createCard.render(cardsContainer);
   createCard = null;
   closePopup(popupAddElement);
-  submitButtonAddElement.classList.add('form__submit-button_inactive');
-  submitButtonAddElement.setAttribute('disabled', 'disabled');
   formAddElement.reset();
 }
 
