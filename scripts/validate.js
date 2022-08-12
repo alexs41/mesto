@@ -54,9 +54,7 @@ const setEventListeners = (formElement, {inputSelector, submitButtonSelector, ..
       // чтобы проверять его при изменении любого из полей
       toggleButtonState(inputList, buttonElement, rest);
   });
-  // checkInputValidity(formElement, inputElement, rest);
-  // чтобы проверить состояние кнопки в самом начале
-  // toggleButtonState(inputList, buttonElement, rest);
+
 
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', function () {

@@ -42,6 +42,21 @@ initialCards.forEach((card, index) => {
   createCard = null;
 });
 
+const config = {
+  formSelector: '.form',
+  inputSelector: '.form__input',
+  submitButtonSelector: '.form__submit-button',
+  inactiveButtonClass: 'form__submit-button_inactive',
+  inputErrorClass: 'form__input_type_error',
+  errorClass: 'form__input-error'
+};
+
+const form1 = new FormValidator(config, '.form_edit-profile');
+const form2 = new FormValidator(config, '.form_add-element');
+
+form1.enableValidation();
+form2.enableValidation();
+
 const profileEditButton = document.querySelector('.profile-info-container__edit-button');
 const popupEditProfile = document.querySelector('.popup_edit-profile');
 
