@@ -1,7 +1,3 @@
-// import openPopup from "./popups";
-
-
-
 export default class FormValidator {
 
   constructor(config, formElement) {
@@ -13,6 +9,7 @@ export default class FormValidator {
       this._errorClass = config.errorClass;
 
       this._formElement = document.querySelector(formElement);
+      this._inputList_test = Array.from(this._formElement.querySelectorAll(this._inputSelector));
   }
   
   _setEventListeners = () => {
