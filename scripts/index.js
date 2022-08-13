@@ -2,40 +2,26 @@ import Card from './Card.js';
 import FormValidator from './FormValidator.js';
 
 const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
+  { name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg' },
+  { name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg' },
+  { name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'  },
+  { name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'  },
+  { name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg' },
+  { name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg' }
 ];
 //-------------- старые переменные
 const cardsContainer = document.querySelector(".elements");
-const elementTemplate = document.querySelector(".element_template").content;
+const templateSelector = '.element_template';
 //----------------
 const profileEditButton = document.querySelector('.profile-info-container__edit-button');
 const popupEditProfile = document.querySelector('.popup_edit-profile');
-
 const popupAddElement = document.querySelector('.popup_add-element');
-
 const addElementButton = document.querySelector('.profile__add-button');
 const popups = document.querySelectorAll('.popup');
 const newElementName = document.querySelector('.form__input_element-name');
@@ -50,12 +36,9 @@ const profileDescription= document.querySelector('.profile-text-info__descriptio
 fullName.value = profileFullName.textContent;
 description.value = profileDescription.textContent;
 //----------------------------
-var createCard = null;
 
 initialCards.forEach((card, index) => {
-  createCard = new Card(card.name, card.link, elementTemplate, openPopup);
-  createCard.render(cardsContainer);
-  createCard = null;
+  cardsContainer.prepend((new Card(card.name, card.link, templateSelector, openPopup)).render());
 });
 
 const config = {
@@ -64,7 +47,7 @@ const config = {
   submitButtonSelector: '.form__submit-button',
   inactiveButtonClass: 'form__submit-button_inactive',
   inputErrorClass: 'form__input_type_error',
-  errorClass: 'form__input-error'
+  errorClass: 'form__input-error_active'
 };
 
 const formValidProfile = new FormValidator(config, '.form_edit-profile');
@@ -90,9 +73,7 @@ function closePopup(popup) {
   document.removeEventListener('keydown', closePopupEsc);
 }
 
-
 function openPopupEditProfile() {
-
   openPopup(popupEditProfile); //вызываем функцию для открытия попапа 
 }
 
@@ -102,20 +83,16 @@ function handleProfileFormSubmit() {
   closePopup(popupEditProfile);
 }
 
-
 addElementButton.addEventListener('click', function () {
   formAddElement.reset();
-  
-
   openPopup(popupAddElement);
 });
 
 function addElementFromPopup() {
-  createCard = new Card(newElementName.value, newElementPictureLink.value, elementTemplate, openPopup);
-  createCard.render(cardsContainer);
-  createCard = null;
+  cardsContainer.prepend((new Card(newElementName.value, newElementPictureLink.value, templateSelector, openPopup)).render());
   closePopup(popupAddElement);
   formAddElement.reset();
+  formValidCard.enableValidation();
 }
 
 profileEditButton.addEventListener('click', function () {

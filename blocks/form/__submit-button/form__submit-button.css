@@ -1,6 +1,7 @@
 .form__submit-button {
     padding: 0;
     width: 83.25%;
+    height: 50px;
     font-family: 'Inter', Arial, sans-serif;
     font-style: normal;
     font-weight: 400;
@@ -13,9 +14,9 @@
     border: none;
     border-radius: 2px;
     margin-bottom: 37px;
-    margin-top: 25px;
+    margin-top: 5px;
 }
-.form__submit-button:hover {
+.form__submit-button:hover:enabled {
     background-color: #000000CC;
     cursor: pointer;
 }

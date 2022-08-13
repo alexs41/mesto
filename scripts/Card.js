@@ -1,34 +1,44 @@
 export default class Card {
 
-    constructor(name, link, template, openPopup) {
+    constructor(name, link, templateSelector, openPopup) {
         this.name = name;
         this.link = link;
-        this.template = template;
-        this._element = this.template.cloneNode(true).children[0];
+        this._templateSelector = templateSelector;
+        this._element = this._getTemplate();
         this._likeButton = this._element.querySelector('.element__like-button');
         this._thashButton = this._element.querySelector('.element__trash-button');
         this._image = this._element.querySelector('.element__image');
         this._header = this._element.querySelector('.element__header');
         this._openPopup = openPopup;
+
+        this._popupElementImage = document.querySelector('.popup_element-image');
+        this._figureImage = this._popupElementImage.querySelector('.figure__image');
+        this._figureCaption = this._popupElementImage.querySelector('.figure__caption');
     }
     
+    _getTemplate() {
+        const cardElement = document
+          .querySelector(this._templateSelector)
+          .content
+          .cloneNode(true)
+          .children[0];
+        return cardElement;
+    }
+
     _likeCard() {
         this._likeButton.classList.toggle('element__like-button_active');
     }
 
     _deleteCard() {
         this._element.remove();
+        this._element = null;
     }
 
     _viewCard() {
-        const popupElementImage = document.querySelector('.popup_element-image');
-        const _FigureImage = popupElementImage.querySelector('.figure__image');
-        const _FigureCaption = popupElementImage.querySelector('.figure__caption');
-
-        this._openPopup(popupElementImage);
-        _FigureCaption.textContent = this.name;
-        _FigureImage.src = this.link;
-        _FigureImage.alt = this.name;
+        this._openPopup(this._popupElementImage);
+        this._figureCaption.textContent = this.name;
+        this._figureImage.src = this.link;
+        this._figureImage.alt = this.name;
     }
 
     _setEventListeners = () => {
@@ -37,11 +47,11 @@ export default class Card {
         this._thashButton.addEventListener('click', () => this._deleteCard());
     }
 
-    render = (cardsContainer) => {
+    render = () => {
         this._image.src = this.link;
         this._image.alt = this.name;
         this._header.textContent= this.name;
         this._setEventListeners();
-        cardsContainer.prepend(this._element);
+        return this._element;
     }
 }
