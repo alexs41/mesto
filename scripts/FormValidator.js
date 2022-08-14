@@ -65,11 +65,7 @@ export default class FormValidator {
     const inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
     const buttonElement = this._formElement.querySelector(this._submitButtonSelector);
     
-    inputList.forEach((inputElement) => {
-        checkInputValidity(inputElement);
-        // чтобы проверять его при изменении любого из полей
-        toggleButtonState(inputList, buttonElement);
-    });
+    toggleButtonState(inputList, buttonElement);
   
     inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', function () {

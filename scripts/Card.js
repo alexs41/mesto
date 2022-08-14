@@ -20,8 +20,8 @@ export default class Card {
         const cardElement = document
           .querySelector(this._templateSelector)
           .content
-          .cloneNode(true)
-          .children[0];
+          .querySelector('.element')
+          .cloneNode(true);
         return cardElement;
     }
 
