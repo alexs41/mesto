@@ -2,6 +2,8 @@ import Card from './Card.js';
 import FormValidator from './FormValidator.js';
 import Section from './Section.js';
 import Popup from './Popup.js';
+import PopupWithImage from './PopupWithImage.js';
+import PopupWithForm from './PopupWithForm.js';
 
 const initialCards = [
   { name: 'Архыз',
@@ -18,10 +20,6 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg' }
 ];
 //-------------- старые переменные
-
-
-
-
 
 const templateSelector = '.element_template';
 //----------------
@@ -74,8 +72,6 @@ addElementButton.addEventListener('click', function () {
   openPopup(popupAddElement);
 });
 
-
-
 profileEditButton.addEventListener('click', function () {
     openPopupEditProfile();
 }); // обработчик на кнопку открытия попап редактирования профиля
@@ -100,8 +96,12 @@ const cardsContainer = document.querySelector(".elements");
 
 // -------------- НОВЫЙ КОД ПР8
 
+function handleCardClick(name, link) {
+  popupWithImage.open(name, link);
+};
+
 const initialCardsObj = initialCards.map( card => {
-  return new Card(card.name, card.link, templateSelector, openPopup);
+  return new Card(card.name, card.link, templateSelector, handleCardClick);
 });
 
 const cardsList = new Section({
@@ -117,20 +117,13 @@ const cardsList = new Section({
 cardsList.renderItems();
 
 function addElementFromPopup() {
-  const newCard = new Card(newElementName.value, newElementPictureLink.value, templateSelector, openPopup);
-  cardsList.renderer(newCard);
+  cardsList.renderer(new Card(newElementName.value, newElementPictureLink.value, templateSelector, handleCardClick));
 
   closePopup(popupAddElement);
   formAddElement.reset();
   formValidCard.enableValidation();
 }
 
-// function addElementFromPopup() {
-//   cardsContainer.prepend((new Card(newElementName.value, newElementPictureLink.value, templateSelector, openPopup)).render());
-//   closePopup(popupAddElement);
-//   formAddElement.reset();
-//   formValidCard.enableValidation();
-// }
 
 formAddElement.addEventListener('submit', addElementFromPopup); // обработчик на кнопку форму добавления элемента
 // -------------- НОВЫЙ КОД ПР8 --------------- end
@@ -150,3 +143,5 @@ const formValidCard = new FormValidator(config, '.form_add-element');
 formValidProfile.enableValidation();
 formValidCard.enableValidation();
 
+const popupWithImage = new PopupWithImage('.popup_element-image');
+// popupWithImage.open();
