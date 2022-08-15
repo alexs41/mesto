@@ -14,6 +14,7 @@ export default class Card {
         this._popupElementImage = document.querySelector('.popup_element-image');
         this._figureImage = this._popupElementImage.querySelector('.figure__image');
         this._figureCaption = this._popupElementImage.querySelector('.figure__caption');
+        // this._handleCardClick = handleCardClick;
     }
     
     _getTemplate() {

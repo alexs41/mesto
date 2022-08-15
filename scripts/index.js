@@ -1,5 +1,7 @@
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
+import Section from './Section.js';
+import Popup from './Popup.js';
 
 const initialCards = [
   { name: 'Архыз',
@@ -16,7 +18,11 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg' }
 ];
 //-------------- старые переменные
-const cardsContainer = document.querySelector(".elements");
+
+
+
+
+
 const templateSelector = '.element_template';
 //----------------
 const profileEditButton = document.querySelector('.profile-info-container__edit-button');
@@ -35,26 +41,6 @@ const profileDescription= document.querySelector('.profile-text-info__descriptio
 
 fullName.value = profileFullName.textContent;
 description.value = profileDescription.textContent;
-//----------------------------
-
-initialCards.forEach((card, index) => {
-  cardsContainer.prepend((new Card(card.name, card.link, templateSelector, openPopup)).render());
-});
-
-const config = {
-  formSelector: '.form',
-  inputSelector: '.form__input',
-  submitButtonSelector: '.form__submit-button',
-  inactiveButtonClass: 'form__submit-button_inactive',
-  inputErrorClass: 'form__input_type_error',
-  errorClass: 'form__input-error_active'
-};
-
-const formValidProfile = new FormValidator(config, '.form_edit-profile');
-const formValidCard = new FormValidator(config, '.form_add-element');
-
-formValidProfile.enableValidation();
-formValidCard.enableValidation();
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
@@ -88,12 +74,7 @@ addElementButton.addEventListener('click', function () {
   openPopup(popupAddElement);
 });
 
-function addElementFromPopup() {
-  cardsContainer.prepend((new Card(newElementName.value, newElementPictureLink.value, templateSelector, openPopup)).render());
-  closePopup(popupAddElement);
-  formAddElement.reset();
-  formValidCard.enableValidation();
-}
+
 
 profileEditButton.addEventListener('click', function () {
     openPopupEditProfile();
@@ -109,4 +90,63 @@ popups.forEach( popup => {
   }); 
 }); // обработчик на кнопки закрытия поп-ап и темной области поп-ап
 
-formAddElement.addEventListener('submit', addElementFromPopup); // обработчик на кнопку сохранения добавленного элемента
+
+//----------------------------
+
+// initialCards.forEach((card, index) => {
+//   cardsContainer.prepend((new Card(card.name, card.link, templateSelector, openPopup)).render());
+// });
+const cardsContainer = document.querySelector(".elements");
+
+// -------------- НОВЫЙ КОД ПР8
+
+const initialCardsObj = initialCards.map( card => {
+  return new Card(card.name, card.link, templateSelector, openPopup);
+});
+
+const cardsList = new Section({
+    items: initialCardsObj,
+    renderer: (item) => {
+      // Тело функции renderer пока оставим пустым
+      cardsList.addItem(item.render());
+    },
+  },
+  '.elements'
+);
+
+cardsList.renderItems();
+
+function addElementFromPopup() {
+  const newCard = new Card(newElementName.value, newElementPictureLink.value, templateSelector, openPopup);
+  cardsList.renderer(newCard);
+
+  closePopup(popupAddElement);
+  formAddElement.reset();
+  formValidCard.enableValidation();
+}
+
+// function addElementFromPopup() {
+//   cardsContainer.prepend((new Card(newElementName.value, newElementPictureLink.value, templateSelector, openPopup)).render());
+//   closePopup(popupAddElement);
+//   formAddElement.reset();
+//   formValidCard.enableValidation();
+// }
+
+formAddElement.addEventListener('submit', addElementFromPopup); // обработчик на кнопку форму добавления элемента
+// -------------- НОВЫЙ КОД ПР8 --------------- end
+
+const config = {
+  formSelector: '.form',
+  inputSelector: '.form__input',
+  submitButtonSelector: '.form__submit-button',
+  inactiveButtonClass: 'form__submit-button_inactive',
+  inputErrorClass: 'form__input_type_error',
+  errorClass: 'form__input-error_active'
+};
+
+const formValidProfile = new FormValidator(config, '.form_edit-profile');
+const formValidCard = new FormValidator(config, '.form_add-element');
+
+formValidProfile.enableValidation();
+formValidCard.enableValidation();
+
