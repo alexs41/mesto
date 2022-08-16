@@ -19,7 +19,7 @@ export default class Popup {
     setEventListeners() {
         this._popup.addEventListener('mousedown', (evt) => { 
             if (evt.target === evt.currentTarget || evt.target.classList.contains('popup__close-button')) { 
-                this._popup.close(); 
+                this.close(); 
             }; 
           }); // обработчик на кнопки закрытия поп-ап и темной области поп-ап
     }
