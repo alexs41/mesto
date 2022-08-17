@@ -20,28 +20,13 @@ const initialCards = [
   { name: 'Байкал',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg' }
 ];
-//-------------- старые переменные
 
 const templateSelector = '.element_template';
-//----------------
 const profileEditButton = document.querySelector('.profile-info-container__edit-button');
-// const popupEditProfile = document.querySelector('.popup_edit-profile');
-// const popupAddElement = document.querySelector('.popup_add-element');
 const addElementButton = document.querySelector('.profile__add-button');
-// const popups = document.querySelectorAll('.popup');
 const newElementName = document.querySelector('.form__input_element-name');
 const newElementPictureLink = document.querySelector('.form__input_picture-link');
-const fullName = document.querySelector('.form__input_full-name');
-const description = document.querySelector('.form__input_description');
-// const formEditProfile = document.querySelector('.form_edit-profile');
 const formAddElement = document.querySelector('.form_add-element');
-const profileFullName = document.querySelector('.profile-text-info__full-name');
-const profileDescription= document.querySelector('.profile-text-info__description');
-
-// fullName.value = profileFullName.textContent;
-// description.value = profileDescription.textContent;
-
-// -------------- НОВЫЙ КОД ПР8
 
 function handleCardClick(name, link) {
   popupWithImage.open(name, link);
@@ -61,8 +46,6 @@ const cardsList = new Section({
   '.elements'
 );
 cardsList.renderItems();
-
-// -------------- НОВЫЙ КОД ПР8 --------------- end
 
 const config = {
   formSelector: '.form',
@@ -105,8 +88,7 @@ const popupAddElement = new PopupWithForm('.popup_add-element', () => {
 });
 popupAddElement.setEventListeners(); // Установка слушаталей на popupAddElement
 
-addElementButton.addEventListener('click', function () {
+addElementButton.addEventListener('click', function () { // обработчик на кнопку форму добавления элемента
   formAddElement.reset();
   popupAddElement.open();
 });
-// formAddElement.addEventListener('submit', addElementFromPopup); // обработчик на кнопку форму добавления элемента
