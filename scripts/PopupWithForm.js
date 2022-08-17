@@ -10,8 +10,8 @@ export default class PopupWithForm extends Popup {
         return Array.from(this._form.querySelectorAll('.form__input'), inputElement => inputElement.value); // соберем массив инпутов
     }
     setInputValues(nameInputSelector, infoInputSelector, { user } ) {
-        this._form.querySelector(nameInputSelector).textContent = user.name;
-        this._form.querySelector(infoInputSelector).textContent = user.info;
+        this._form.querySelector(nameInputSelector).value = user.name;
+        this._form.querySelector(infoInputSelector).value = user.info;
     }
     setEventListeners() {
         // добавляем обрабочик клика на крестик и темную область
