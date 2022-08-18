@@ -37,10 +37,10 @@
             <div class="popup__container">
                 <form class="form form_edit-profile" novalidate>
                     <h3 class="form__header">Редактировать профиль</h3>
-                    <input id="full-name-input" type="text" class="form__input form__input_full-name" placeholder="Имя" required minlength="2" maxlength="40">
+                    <input id="full-name-input" type="text" name="full-name-input" class="form__input form__input_full-name" placeholder="Имя" required minlength="2" maxlength="40">
                     <span class="full-name-input-error form__input-error"></span>
 
-                    <input id="description-input" type="text" class="form__input form__input_description" placeholder="Профессия" required minlength="2" maxlength="200">
+                    <input id="description-input" type="text" name="description-input" class="form__input form__input_description" placeholder="Профессия" required minlength="2" maxlength="200">
                     <span class="description-input-error form__input-error"></span>
                     <button class="form__submit-button form__submit-button_edit-profile" type="submit">Сохранить</button>
                     <button class="popup__close-button" type="button"></button>
@@ -51,10 +51,10 @@
             <div class="popup__container">
                 <form class="form form_add-element">
                     <h3 class="form__header">Новое место</h3>
-                    <input id="element-name-input" type="text" class="form__input form__input_element-name" placeholder="Название" required minlength="2" maxlength="40">
+                    <input id="element-name-input" type="text" name="element-name-input" class="form__input form__input_element-name" placeholder="Название" required minlength="2" maxlength="40">
                     <span class="element-name-input-error form__input-error"></span>
 
-                    <input id="picture-link-input" type="url" class="form__input form__input_picture-link" placeholder="Ссылка на картинку" required>
+                    <input id="picture-link-input" type="url" name="picture-link-input" class="form__input form__input_picture-link" placeholder="Ссылка на картинку" required>
                     <span class="picture-link-input-error form__input-error"></span>
 
                     <button class="form__submit-button form__submit-button_add-element" type="submit">Создать</button>
@@ -65,7 +65,7 @@
         <div class="popup popup_element-image">
             <div class="popup__container">
                 <figure class="figure">
-                    <img class="figure__image" src="images/gora-elbrus.jpg" alt="test-alt">
+                    <img class="figure__image">
                     <figcaption class="figure__caption">Подпись к фото</figcaption>
                     <button class="popup__close-button" type="button"></button>
                 </figure>
@@ -81,6 +81,5 @@
             </div>
         </template>
     </div>
-    <script type='module' src='scripts/index.js'></script>
 </body>
 </html>

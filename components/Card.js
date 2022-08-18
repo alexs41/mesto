@@ -8,9 +8,6 @@ export default class Card {
         this._thashButton = this._element.querySelector('.element__trash-button');
         this._image = this._element.querySelector('.element__image');
         this._header = this._element.querySelector('.element__header');
-        this._popupElementImage = document.querySelector('.popup_element-image');
-        this._figureImage = this._popupElementImage.querySelector('.figure__image');
-        this._figureCaption = this._popupElementImage.querySelector('.figure__caption');
         this._handleCardClick = handleCardClick;
     }
     _getTemplate() {
