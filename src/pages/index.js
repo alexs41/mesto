@@ -1,4 +1,4 @@
-import '../pages/index.css';
+import './index.css';
 
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
@@ -17,9 +17,8 @@ import {
   inputPictureLink,
 } from '../utils/constants.js';
 
-
 function createCard(name, link) {
-  return new Card(name, link, templateSelector, handleCardClick);
+  return new Card(name, link, templateSelector, handleCardClick).render();
 }
 
 const initialCardsObj = initialCards.map( card => {
@@ -30,7 +29,7 @@ const cardsList = new Section({
     items: initialCardsObj,
     renderer: (item) => {
       // Тело функции renderer пока оставим пустым
-      cardsList.addItem(item.render());
+      cardsList.addItem(item);
     },
   },
   '.elements'
@@ -55,6 +54,8 @@ popupWithImage.setEventListeners();
 const popupEditProfile = new PopupWithForm('.popup_edit-profile', () => {
   user.setUserInfo(popupEditProfile.getInputValues()); // получаем данные из формы и вставляем в профиль
   popupEditProfile.close();
+  formValidProfile.resetValidation();
+
 });
 popupEditProfile.setEventListeners(); // Установка слушаталей на popupEditProfile
 
@@ -69,10 +70,10 @@ profileEditButton.addEventListener('click', function () {
 const popupAddElement = new PopupWithForm('.popup_add-element', () => {
   cardsList.renderer(createCard(inputElementName.value, inputPictureLink.value));
   popupAddElement.close();
-  formValidCard.resetValidation();
 });
 popupAddElement.setEventListeners(); // Установка слушаталей на popupAddElement
 
 addElementButton.addEventListener('click', function () { // обработчик на кнопку форму добавления элемента
+  formValidCard.resetValidation()
   popupAddElement.open();
 });
