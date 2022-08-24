@@ -49,7 +49,7 @@ popupEditProfile.setEventListeners(); // Установка слушаталей
 
 //----------------------  СОЗДАНИЕ КАРТОЧЕК --------- НАЧАЛО
 function createCard(card) {
-  return new Card(card, templateSelector, handleCardClick, user).render();
+  return new Card(card, templateSelector, handleCardClick, user, api).render();
 }
 
 let initialCardsObj = [];
@@ -78,7 +78,7 @@ let cardsList = undefined;
 })()
 //----------------------  СОЗДАНИЕ КАРТОЧЕК --------- КОНЕЦ
 
-const testCard = { name: 'Lake 13', link: 'https://oir.mobi/uploads/posts/2021-06/thumbs/1622874619_38-oir_mobi-p-shedevri-prirodi-priroda-krasivo-foto-40.jpg'};
+const testCard = { name: 'Picture', link: 'https://img4.goodfon.ru/wallpaper/big/4/10/priroda-vecher-pasmurno.jpg'};
 // api.addCard(testCard);
 
 function handleCardClick(name, link) {
