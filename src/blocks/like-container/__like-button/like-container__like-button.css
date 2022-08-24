@@ -1,4 +1,4 @@
-.element__like-button {
+.like-container__like-button {
     width: 22px;
     height: 22px;
     margin: 0;
@@ -8,11 +8,11 @@
     background-image: url('../../../images/like-icon.svg');
     background-repeat: no-repeat;
     background-position: center;
-    position: absolute;
+    /* position: absolute;
     right: 20px;
-    bottom: 30px;
+    bottom: 30px; */
 }
-.element__like-button:hover {
+.like-container__like-button:hover {
     opacity: 0.5;
     cursor: pointer;
 }

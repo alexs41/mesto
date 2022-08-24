@@ -5,7 +5,7 @@ export default class Card {
         this._id = card._id;
         this._templateSelector = templateSelector;
         this._element = this._getTemplate();
-        this._likeButton = this._element.querySelector('.element__like-button');
+        this._likeButton = this._element.querySelector('.like-container__like-button');
         this._thashButton = this._element.querySelector('.element__trash-button');
         this._image = this._element.querySelector('.element__image');
         this._header = this._element.querySelector('.element__header');
@@ -20,7 +20,7 @@ export default class Card {
         return cardElement;
     }
     _likeCard() {
-        this._likeButton.classList.toggle('element__like-button_active');
+        this._likeButton.classList.toggle('like-container__like-button_active');
     }
     _deleteCard() {
         this._element.remove();

@@ -1,0 +1,10 @@
+.like-container {
+    margin: 0;
+    padding: 0;
+    width: 22px;
+    height: 35px;
+    position: absolute;
+    right: 20px;
+    bottom: 22px;
+    display: inline-block;
+}
