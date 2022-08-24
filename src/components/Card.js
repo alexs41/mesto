@@ -1,5 +1,5 @@
 export default class Card {
-    constructor(card, templateSelector, handleCardClick) {
+    constructor(card, templateSelector, handleCardClick, user) {
         this.name = card.name;
         this.link = card.link;
         this._id = card._id;
@@ -12,6 +12,8 @@ export default class Card {
         this._handleCardClick = handleCardClick;
         this._likes = card.likes.length;
         this._likeCounter = this._element.querySelector('.like-container__like-count');
+        this._user = user;
+        this._owner = card.owner;
     }
     _getTemplate() {
         const cardElement = document
@@ -31,7 +33,9 @@ export default class Card {
     _setEventListeners = () => {
         this._image.addEventListener("click", () => this._handleCardClick(this.name, this.link));
         this._likeButton.addEventListener('click', () => this._likeCard());
-        this._thashButton.addEventListener('click', () => this._deleteCard());
+        if (!this._thashButton) {
+            this._thashButton.addEventListener('click', () => this._deleteCard());
+        };
     }
     render = () => {
         this._image.src = this.link;
@@ -40,6 +44,13 @@ export default class Card {
         this._element.id = this._id;
         this._likeCounter.textContent = this._likes;
         this._setEventListeners();
+        // debugger;
+        if (this._owner._id !== this._user.id) {
+            this._thashButton.remove();
+        } else {
+            console.log(`Owner id ${this._owner._id} and User id ${this._user.id}`);
+        };
+        // debugger;
         return this._element;
     }
 }

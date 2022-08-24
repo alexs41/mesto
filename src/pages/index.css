@@ -40,6 +40,7 @@
 @import url(../blocks/popup/_element-image/popup_element-image.css);
 
 @import url(../blocks/form/form.css);
+@import url(../blocks/form/_confirm-delete/form_confirm-delete.css);
 @import url(../blocks/form/__header/form__header.css);
 @import url(../blocks/form/__submit-button/form__submit-button.css);
 @import url(../blocks/form/__submit-button/_inactive/form__submit-button_inactive.css);

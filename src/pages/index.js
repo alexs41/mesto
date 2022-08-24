@@ -46,10 +46,10 @@ const popupEditProfile = new PopupWithForm('.popup_edit-profile', () => {
 popupEditProfile.setEventListeners(); // Установка слушаталей на popupEditProfile
 
 //----------------------  РЕДАКТИРОВАНИЕ ПРОФИЛЯ --------- КОНЕЦ
-//----------------------  СОЗДАНИЕ КАРТОЧЕК --------- НАЧАЛО
 
+//----------------------  СОЗДАНИЕ КАРТОЧЕК --------- НАЧАЛО
 function createCard(card) {
-  return new Card(card, templateSelector, handleCardClick).render();
+  return new Card(card, templateSelector, handleCardClick, user).render();
 }
 
 let initialCardsObj = [];
@@ -109,3 +109,13 @@ addElementButton.addEventListener('click', function () { // обработчик
   formValidCard.resetValidation()
   popupAddElement.open();
 });
+
+// созданиие popupConfirm экземпляра класса PopupConfirm
+// const popupConfirm = new PopupConfirm('.popup_confirm', async () => {
+  
+//   const newCard = await api.addCard(testCard);
+//   cardsList.renderer(createCard(newCard));
+//   popupAddElement.close();
+// });
+
+// popupAddElement.setEventListeners(); // Установка слушаталей на popupAddElement
