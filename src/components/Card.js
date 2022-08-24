@@ -10,6 +10,8 @@ export default class Card {
         this._image = this._element.querySelector('.element__image');
         this._header = this._element.querySelector('.element__header');
         this._handleCardClick = handleCardClick;
+        this._likes = card.likes.length;
+        this._likeCounter = this._element.querySelector('.like-container__like-count');
     }
     _getTemplate() {
         const cardElement = document
@@ -36,6 +38,7 @@ export default class Card {
         this._image.alt = this.name;
         this._header.textContent= this.name;
         this._element.id = this._id;
+        this._likeCounter.textContent = this._likes;
         this._setEventListeners();
         return this._element;
     }
