@@ -78,7 +78,7 @@ let cardsList = undefined;
 })()
 //----------------------  СОЗДАНИЕ КАРТОЧЕК --------- КОНЕЦ
 
-const testCard = { name: 'Lake 11', link: 'https://oir.mobi/uploads/posts/2021-06/thumbs/1622874619_38-oir_mobi-p-shedevri-prirodi-priroda-krasivo-foto-40.jpg'};
+const testCard = { name: 'Lake 13', link: 'https://oir.mobi/uploads/posts/2021-06/thumbs/1622874619_38-oir_mobi-p-shedevri-prirodi-priroda-krasivo-foto-40.jpg'};
 // api.addCard(testCard);
 
 function handleCardClick(name, link) {
@@ -99,9 +99,7 @@ popupWithImage.setEventListeners();
 const popupAddElement = new PopupWithForm('.popup_add-element', async () => {
   
   const newCard = await api.addCard(testCard);
-  cardsList.renderer(createCard(newCard.name, newCard.link));
-  debugger;
-  // cardsList.renderer(createCard(inputElementName.value, inputPictureLink.value));
+  cardsList.renderer(createCard(newCard));
   popupAddElement.close();
 });
 
