@@ -493,9 +493,13 @@ template {
 }
 
 .profile-info__avatar {
+    position:relative;
     width: 120px;
     height: 120px;
-    object-fit: contain;
+    background-position: center;
+    background-size: cover;
+    /* background-image: url('../../../images/Avatar.jpg'); */
+    background-repeat: no-repeat;
     border-radius: 50%;
     margin-right: 30px;
 }
@@ -504,6 +508,22 @@ template {
     .profile-info__avatar {
         margin: 0 auto;
     }
+}
+/* .profile-info__avatar:hover {
+    opacity: 0.2;
+} */
+
+.profile-info__avatar:hover::after {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    left: 0;
+    top: 0;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url(a086f758840ae814ecde.svg);
+    background-color: rgba(0, 0, 0, .8);
+    content: "";
 }
 .profile-text-info {
     max-width: 294px;
@@ -667,7 +687,17 @@ template {
     opacity: 0.8;
     cursor: pointer;
 }
-.element__like-button {
+.like-container {
+    margin: 0;
+    padding: 0;
+    width: 22px;
+    height: 35px;
+    position: absolute;
+    right: 20px;
+    bottom: 22px;
+    display: inline-block;
+}
+.like-container__like-button {
     width: 22px;
     height: 22px;
     margin: 0;
@@ -677,16 +707,30 @@ template {
     background-image: url(87ed371465c7a6a1cd01.svg);
     background-repeat: no-repeat;
     background-position: center;
-    position: absolute;
+    /* position: absolute;
     right: 20px;
-    bottom: 30px;
+    bottom: 30px; */
 }
-.element__like-button:hover {
+.like-container__like-button:hover {
     opacity: 0.5;
     cursor: pointer;
 }
-.element__like-button_active {
+.like-container__like-button_active {
     background-image: url(fe17a515669479b1e649.svg);
+}
+.like-container__like-count {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: .8125rem;
+    line-height: 1.23;
+    text-align: center;
+    color: #000000;
+    /* position: absolute;
+    right: 20px;
+    bottom: 30px; */
 }
 .element__trash-button {
     width: 18px;
@@ -799,7 +843,7 @@ template {
 }
 .form {
     width: 430px;
-    height: 330px;
+    /* height: 330px; */
     background-color: white;
     color: black;
 
@@ -821,6 +865,9 @@ template {
         height: 322px;
     }
     
+}
+.form_confirm-delete {
+    height: 181px;
 }
 .form__header {
     margin: 0;
