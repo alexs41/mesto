@@ -92,4 +92,18 @@ export default class Api {
             console.error('Произошла ошибка!', err);
         }
     }
+    async editAvatar(user) {
+        try {
+            const response = await fetch(`${this._url}/users/me/avatar`, {
+                method: 'PATCH',
+                headers: this._headers,
+                body: JSON.stringify({
+                    avatar: user.avatar,
+                })
+              });
+            return response.json()
+        }   catch (err) {
+            console.error('Произошла ошибка!', err);
+        }
+    }
 }

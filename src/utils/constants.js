@@ -35,3 +35,4 @@ export const profileEditButton = document.querySelector('.profile-info-container
 export const addElementButton = document.querySelector('.profile__add-button');
 export const inputElementName = document.querySelector('.form__input_element-name');
 export const inputPictureLink = document.querySelector('.form__input_picture-link');
+export const avatar = document.querySelector('.profile-info__avatar');

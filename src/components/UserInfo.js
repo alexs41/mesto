@@ -17,7 +17,7 @@ export default class UserInfo {
     setUserInfo(user) {// вставляем информацию в профиль
         if (user.name) { this._name.textContent = user.name;};
         if (user.about) { this._info.textContent = user.about;};
-        if (user.avatar) { this._avatar.src = user.avatar;};
+        if (user.avatar) { this._avatar.style.backgroundImage = `url(${user.avatar})`;};
         if (user.cohort) { this._cohort = user.cohort;};
         if (user._id) { this.id = user._id;};
     }

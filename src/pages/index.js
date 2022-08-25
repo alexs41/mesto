@@ -17,6 +17,7 @@ import {
   inputElementName,
   inputPictureLink,
   apiConfig,
+  avatar,
 } from '../utils/constants.js';
 
 const api = new Api(apiConfig);
@@ -88,27 +89,49 @@ function handleCardClick(name, link) {
 
 const formValidProfile = new FormValidator(config, '.form_edit-profile');
 const formValidCard = new FormValidator(config, '.form_add-element');
+const formValidAvatar = new FormValidator(config, '.form_edit-avatar');
 
 formValidProfile.enableValidation();
 formValidCard.enableValidation();
+formValidAvatar.enableValidation();
 
+//------------------------ popupWithImage --------------------------
 const popupWithImage = new PopupWithImage('.popup_element-image');
 popupWithImage.setEventListeners();
 
-// созданиие popupAddElement экземпляра класса PopupWithForm
+//------------------------ popupAddElement --------------------------
 const popupAddElement = new PopupWithForm('.popup_add-element', async () => {
   
   const newCard = await api.addCard(testCard);
   cardsList.renderer(createCard(newCard));
   popupAddElement.close();
 });
-
 popupAddElement.setEventListeners(); // Установка слушаталей на popupAddElement
 
 addElementButton.addEventListener('click', function () { // обработчик на кнопку форму добавления элемента
   formValidCard.resetValidation()
   popupAddElement.open();
 });
+
+//------------------------ popupAddElement --------------------------
+const popupEditAvatar = new PopupWithForm('.popup_edit-avatar', () => {
+  const inputValuesObj = popupEditAvatar.getInputValues();
+  (async function () {
+    user.setUserInfo(await api.editAvatar(inputValuesObj));
+    
+  })();// получаем данные из формы и вставляем в профиль
+  popupEditAvatar.close();
+});
+
+popupEditAvatar.setEventListeners(); // Установка слушаталей на popupAddElement
+
+avatar.addEventListener('click', function () { // обработчик на кнопку форму добавления элемента
+  formValidAvatar.resetValidation()
+  popupEditAvatar.open();
+});
+
+
+
 
 // созданиие popupConfirm экземпляра класса PopupConfirm
 // const popupConfirm = new PopupConfirm('.popup_confirm', async () => {
