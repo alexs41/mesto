@@ -8,7 +8,12 @@ export default class Api {
             const response = await fetch(`${this._url}/users/me`, {
                 headers: this._headers
             })
-            return await response.json()
+            if (response.ok) {
+                const json = await response.json();
+                return json;
+            } else {
+                console.error('Произошла ошибка!');
+            }
         }   catch (err) {
             console.error('Произошла ошибка!', err);
         }
@@ -22,8 +27,13 @@ export default class Api {
                   name: user.name,
                   about: user.about
                 })
-              });
-            return await response.json()
+            });
+            if (response.ok) {
+                const json = await response.json();
+                return json;
+            } else {
+                console.error('Произошла ошибка!');
+            }
         }   catch (err) {
             console.error('Произошла ошибка!', err);
         }
@@ -39,7 +49,6 @@ export default class Api {
             } else {
                 console.error('Произошла ошибка!');
             }
-            
         }   catch (err) {
             console.error('Произошла ошибка!', err);
         }
@@ -53,8 +62,12 @@ export default class Api {
                   name: card.name,
                   link: card.link
                 })
-              });
-            return await response.json()
+            });
+            if (response.ok) {
+                return await response.json();
+            } else {
+                console.error('Произошла ошибка!');
+            }
         }   catch (err) {
             console.error('Произошла ошибка!', err);
         }
@@ -66,7 +79,8 @@ export default class Api {
                 headers: this._headers,
               });
               if (response.ok) {
-                return cardId;
+                console.log(`response OK DeleteCard ${response.ok}`)
+                return await response.json();
               }
         }   catch (err) {
             console.error('Произошла ошибка!', err);
@@ -106,8 +120,13 @@ export default class Api {
                 body: JSON.stringify({
                     avatar: user.avatar,
                 })
-              });
-            return await response.json()
+            });
+            if (response.ok) {
+                const json = await response.json();
+                return json;
+            } else {
+                console.error('Произошла ошибка!');
+            }
         }   catch (err) {
             console.error('Произошла ошибка!', err);
         }

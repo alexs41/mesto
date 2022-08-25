@@ -31,15 +31,13 @@ export default class PopupWithForm extends Popup {
         this._form.addEventListener('submit', this._submitCallback);
     }
     close() {
-        // закрыть попап
         super.close();
-        // сбросить форму
         this._form.reset();
     }
     handleSaving() {
         this._submitButton.textContent = 'Сохранение...';
     }
     handleSavingComplete() {
-        this._submitButton.textContent = 'Сохраненить';
+        this._submitButton.textContent = 'Сохранить';
     }
   }

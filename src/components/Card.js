@@ -9,7 +9,6 @@ export default class Card {
         this._image = this._element.querySelector('.element__image');
         this._header = this._element.querySelector('.element__header');
         this._handleCardClick = handleCardClick;
-        // this._handleDeleteClick = handleDeleteClick;
         this._likeCounter = this._element.querySelector('.like-container__like-count');
         this._user = user;
         this._api = api;

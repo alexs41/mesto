@@ -10,13 +10,10 @@ import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api';
 
 import {
-  // initialCards,
   config,
   templateSelector,
   profileEditButton,
   addElementButton,
-  inputElementName,
-  inputPictureLink,
   apiConfig,
   avatar,
 } from '../utils/constants.js';
@@ -53,50 +50,38 @@ const popupEditProfile = new PopupWithForm('.popup_edit-profile', async () => {
 });
 popupEditProfile.setEventListeners(); // Установка слушаталей на popupEditProfile
 
-//----------------------  РЕДАКТИРОВАНИЕ ПРОФИЛЯ --------- КОНЕЦ
-
 //----------------------  СОЗДАНИЕ КАРТОЧЕК --------- НАЧАЛО
 function createCard(card) {
   return new Card(card, templateSelector, handleCardClick, user, api, popupConfirmDelete).render();
 }
-
 let initialCardsObj = [];
-
 let cardsList = undefined;
 
 (async function () {
   try {
     const initialCards = (await api.getInitialCards());
-
     initialCardsObj = initialCards.map( card => {
       return createCard(card);
     });
+    initialCardsObj = initialCardsObj.reverse();
     cardsList = new Section({
-      items: initialCardsObj,
-      renderer: (item) => {
-        cardsList.addItem(item);
+        items: initialCardsObj,
+        renderer: (item) => {
+          cardsList.addItem(item);
+        },
       },
-    },
-    '.elements'
+      '.elements'
     );
     cardsList.renderItems();
   } catch (err) {
     console.error('Произошла ошибка!', err);
   }
-
-})()
+})();
 //----------------------  СОЗДАНИЕ КАРТОЧЕК --------- КОНЕЦ
-
-const testCard = { name: 'Picture', link: 'https://img4.goodfon.ru/wallpaper/big/4/10/priroda-vecher-pasmurno.jpg'};
-// api.addCard(testCard);
 
 function handleCardClick(name, link) {
   popupWithImage.open(name, link);
 };
-
-// function handleDeleteClick(deleteCardId) {
-//   popupConfirmDelete.open(deleteCardId);
-// }
 
 const formValidProfile = new FormValidator(config, '.form_edit-profile');
 const formValidCard = new FormValidator(config, '.form_add-element');
@@ -112,48 +97,14 @@ formValidConfirm.enableValidation();
 const popupWithImage = new PopupWithImage('.popup_element-image');
 popupWithImage.setEventListeners();
 
-
-
-
-
-
-
-
-
 //------------------------ popupConfirmDelete --------------------------
-const testCardId = '6307849fb99cc60e12d6b7c3';
-
-const popupConfirmDelete = new PopupConfirm('.popup_confirm', async () => {
-  debugger;
-  try {
-    debugger;
-    const response = await api.deleteCard(popupConfirmDelete.card._id);
-    if (response.ok) {
+const popupConfirmDelete = new PopupConfirm('.popup_confirm', () => {
+    api.deleteCard(popupConfirmDelete.card._id);
       popupConfirmDelete.element.remove();
       popupConfirmDelete.element = null;
       popupConfirmDelete.close();
-    }
-  } catch (err) {
-      console.error('Произошла ошибка!', err);
-  }
-
 });
 popupConfirmDelete.setEventListeners(); // Установка слушаталей на popupAddElement
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //------------------------ popupAddElement --------------------------
 const popupAddElement = new PopupWithForm('.popup_add-element', async () => {
@@ -169,20 +120,25 @@ const popupAddElement = new PopupWithForm('.popup_add-element', async () => {
   }
 });
 popupAddElement.setEventListeners(); // Установка слушаталей на popupAddElement
-
 addElementButton.addEventListener('click', function () { // обработчик на кнопку форму добавления элемента
   formValidCard.resetValidation()
   popupAddElement.open();
 });
 
 //------------------------ popupEditAvatar --------------------------
-const popupEditAvatar = new PopupWithForm('.popup_edit-avatar', () => {
-  const inputValuesObj = popupEditAvatar.getInputValues();
-  (async function () {
-    user.setUserInfo(await api.editAvatar(inputValuesObj));
+const popupEditAvatar = new PopupWithForm('.popup_edit-avatar', async () => {
+  try {
+    popupEditAvatar.handleSaving();
+    const inputValuesObj = popupEditAvatar.getInputValues();
     
-  })();// получаем данные из формы и вставляем в профиль
-  popupEditAvatar.close();
+    user.setUserInfo(await api.editAvatar(inputValuesObj));
+    // получаем данные из формы и вставляем в профиль
+    popupEditAvatar.close();
+    popupEditAvatar.handleSavingComplete();
+  } catch (err) {
+    console.error('Произошла ошибка!', err);
+  }
+  
 });
 popupEditAvatar.setEventListeners(); // Установка слушаталей на popupAddElement
 
@@ -190,16 +146,3 @@ avatar.addEventListener('click', function () { // обработчик на кн
   formValidAvatar.resetValidation()
   popupEditAvatar.open();
 });
-
-
-
-
-// созданиие popupConfirm экземпляра класса PopupConfirm
-// const popupConfirm = new PopupConfirm('.popup_confirm', async () => {
-  
-//   const newCard = await api.addCard(testCard);
-//   cardsList.renderer(createCard(newCard));
-//   popupAddElement.close();
-// });
-
-// popupAddElement.setEventListeners(); // Установка слушаталей на popupAddElement
