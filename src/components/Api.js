@@ -33,8 +33,13 @@ export default class Api {
             const response = await fetch(`${this._url}/cards`, {
                 headers: this._headers
             })
+            if (response.ok) {
+                const json = await response.json();
+                return json;
+            } else {
+                console.error('Произошла ошибка!');
+            }
             
-            return await response.json()
         }   catch (err) {
             console.error('Произошла ошибка!', err);
         }
