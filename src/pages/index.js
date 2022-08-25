@@ -5,6 +5,7 @@ import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
+import PopupConfirm from '../components/PopupConfirm.js'
 import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api';
 
@@ -50,7 +51,7 @@ popupEditProfile.setEventListeners(); // Установка слушаталей
 
 //----------------------  СОЗДАНИЕ КАРТОЧЕК --------- НАЧАЛО
 function createCard(card) {
-  return new Card(card, templateSelector, handleCardClick, user, api).render();
+  return new Card(card, templateSelector, handleCardClick, user, api, popupConfirmDelete).render();
 }
 
 let initialCardsObj = [];
@@ -86,25 +87,77 @@ function handleCardClick(name, link) {
   popupWithImage.open(name, link);
 };
 
+// function handleDeleteClick(deleteCardId) {
+//   popupConfirmDelete.open(deleteCardId);
+// }
 
 const formValidProfile = new FormValidator(config, '.form_edit-profile');
 const formValidCard = new FormValidator(config, '.form_add-element');
 const formValidAvatar = new FormValidator(config, '.form_edit-avatar');
+const formValidConfirm = new FormValidator(config, '.form_confirm-delete');
 
 formValidProfile.enableValidation();
 formValidCard.enableValidation();
 formValidAvatar.enableValidation();
+formValidConfirm.enableValidation();
 
 //------------------------ popupWithImage --------------------------
 const popupWithImage = new PopupWithImage('.popup_element-image');
 popupWithImage.setEventListeners();
 
+
+
+
+
+
+
+
+
+//------------------------ popupConfirmDelete --------------------------
+const testCardId = '6307849fb99cc60e12d6b7c3';
+
+const popupConfirmDelete = new PopupConfirm('.popup_confirm', () => {
+  // debugger;
+  // try {
+    debugger;
+    // const response = await api.deleteCard(popupConfirmDelete.card._id);
+    // if (response.ok) {
+      popupConfirmDelete.element.remove();
+      // popupConfirmDelete.element = null;
+      popupConfirmDelete.close();
+  //   }
+  // } catch (err) {
+  //     console.error('Произошла ошибка!', err);
+  // }
+
+});
+popupConfirmDelete.setEventListeners(); // Установка слушаталей на popupAddElement
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //------------------------ popupAddElement --------------------------
 const popupAddElement = new PopupWithForm('.popup_add-element', async () => {
-  
-  const newCard = await api.addCard(testCard);
-  cardsList.renderer(createCard(newCard));
-  popupAddElement.close();
+  const inputValuesObj = popupAddElement.getInputValues();
+  debugger;
+  (async function () {
+    const newCard = await api.addCard(inputValuesObj);
+    cardsList.renderer(createCard(newCard));
+    popupAddElement.close();
+  })();
+
 });
 popupAddElement.setEventListeners(); // Установка слушаталей на popupAddElement
 
@@ -113,7 +166,7 @@ addElementButton.addEventListener('click', function () { // обработчик
   popupAddElement.open();
 });
 
-//------------------------ popupAddElement --------------------------
+//------------------------ popupEditAvatar --------------------------
 const popupEditAvatar = new PopupWithForm('.popup_edit-avatar', () => {
   const inputValuesObj = popupEditAvatar.getInputValues();
   (async function () {
@@ -122,7 +175,6 @@ const popupEditAvatar = new PopupWithForm('.popup_edit-avatar', () => {
   })();// получаем данные из формы и вставляем в профиль
   popupEditAvatar.close();
 });
-
 popupEditAvatar.setEventListeners(); // Установка слушаталей на popupAddElement
 
 avatar.addEventListener('click', function () { // обработчик на кнопку форму добавления элемента

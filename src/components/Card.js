@@ -1,9 +1,7 @@
 export default class Card {
-    constructor(card, templateSelector, handleCardClick, user, api) {
+    constructor(card, templateSelector, handleCardClick, user, api, popupConfirmDelete) {
         this.card = card;
-        // this.name = card.name;
-        // this.link = card.link;
-        // this._id = card._id;
+        this._popupConfirmDelete = popupConfirmDelete;
         this._templateSelector = templateSelector;
         this._element = this._getTemplate();
         this._likeButton = this._element.querySelector('.like-container__like-button');
@@ -11,12 +9,9 @@ export default class Card {
         this._image = this._element.querySelector('.element__image');
         this._header = this._element.querySelector('.element__header');
         this._handleCardClick = handleCardClick;
-        // this._likes = card.likes.length;
+        // this._handleDeleteClick = handleDeleteClick;
         this._likeCounter = this._element.querySelector('.like-container__like-count');
         this._user = user;
-
-        // this._owner = card.owner;
-        
         this._api = api;
     }
     _getTemplate() {
@@ -28,7 +23,6 @@ export default class Card {
         return cardElement;
     }
     async _likeCard() {
-        // this._likeButton.classList.toggle('like-container__like-button_active');
         try {
             if (!this._likeButton.classList.contains('like-container__like-button_active')) {
                 this._likeButton.classList.add('like-container__like-button_active');
@@ -57,7 +51,9 @@ export default class Card {
         this._image.addEventListener("click", () => this._handleCardClick(this.card.name, this.card.link));
         this._likeButton.addEventListener('click', () => this._likeCard());
         if (this._thashButton) {
-            this._thashButton.addEventListener('click', () => this._deleteCard());
+            this._thashButton.addEventListener('click', () => this._popupConfirmDelete.open(this._element, this.card));
+            //this._handleDeleteClick(this.card._id)
+            // this._deleteCard()
         };
     }
     render = () => {

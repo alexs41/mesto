@@ -4,7 +4,7 @@
     height: 120px;
     background-position: center;
     background-size: cover;
-    background-image: url('../../../images/Avatar.jpg');
+    /* background-image: url('../../../images/Avatar.jpg'); */
     background-repeat: no-repeat;
     border-radius: 50%;
     margin-right: 30px;

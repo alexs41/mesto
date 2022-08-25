@@ -8,7 +8,7 @@ export default class Api {
             const response = await fetch(`${this._url}/users/me`, {
                 headers: this._headers
             })
-            return response.json()
+            return await response.json()
         }   catch (err) {
             console.error('Произошла ошибка!', err);
         }
@@ -23,7 +23,7 @@ export default class Api {
                   about: user.about
                 })
               });
-            return response.json()
+            return await response.json()
         }   catch (err) {
             console.error('Произошла ошибка!', err);
         }
@@ -33,7 +33,8 @@ export default class Api {
             const response = await fetch(`${this._url}/cards`, {
                 headers: this._headers
             })
-            return response.json()
+            
+            return await response.json()
         }   catch (err) {
             console.error('Произошла ошибка!', err);
         }
@@ -48,7 +49,7 @@ export default class Api {
                   link: card.link
                 })
               });
-            return response.json()
+            return await response.json()
         }   catch (err) {
             console.error('Произошла ошибка!', err);
         }
@@ -73,7 +74,7 @@ export default class Api {
                 headers: this._headers,
               });
               if (response.ok) {
-                return response.json();
+                return await response.json();
               }
         }   catch (err) {
             console.error('Произошла ошибка!', err);
@@ -86,7 +87,7 @@ export default class Api {
                 headers: this._headers,
               });
               if (response.ok) {
-                return response.json();
+                return await response.json();
               }
         }   catch (err) {
             console.error('Произошла ошибка!', err);
@@ -101,7 +102,7 @@ export default class Api {
                     avatar: user.avatar,
                 })
               });
-            return response.json()
+            return await response.json()
         }   catch (err) {
             console.error('Произошла ошибка!', err);
         }
