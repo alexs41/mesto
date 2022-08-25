@@ -72,6 +72,12 @@ export default class Card {
         } else {
             console.log(`Owner id ${this.card.owner._id} and User id ${this._user.id}`);
         };
+        // debugger;
+        this.card.likes.some( (likeObj) => {
+            if (likeObj._id == this._user.id) {
+                this._likeButton.classList.add('like-container__like-button_active');
+            }
+        });
         return this._element;
     }
 }
