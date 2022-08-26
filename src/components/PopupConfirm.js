@@ -15,13 +15,8 @@ export default class PopupConfirm extends Popup {
         this._form.addEventListener('submit', this._submitCallback);
     }
     open = (element, card) => {
-        this._popup.classList.add('popup_opened');
-        document.addEventListener('keydown', this._handleEscClose);
+        super.open();
         this.card = card;
         this.element = element;
-    }
-    close() {
-        // закрыть попап
-        super.close();
     }
   }

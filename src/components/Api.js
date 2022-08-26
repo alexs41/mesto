@@ -3,132 +3,117 @@ export default class Api {
         this._url = config.url;
         this._headers = config.headers;
     }
-    async getUser() {
-        try {
-            const response = await fetch(`${this._url}/users/me`, {
-                headers: this._headers
-            })
-            if (response.ok) {
-                const json = await response.json();
-                return json;
-            } else {
-                console.error('Произошла ошибка!');
-            }
-        }   catch (err) {
-            console.error('Произошла ошибка!', err);
-        }
-    }
-    async editUser(user) {
-        try {
-            const response = await fetch(`${this._url}/users/me`, {
-                method: 'PATCH',
-                headers: this._headers,
-                body: JSON.stringify({
-                  name: user.name,
-                  about: user.about
-                })
+    getUser = () => {
+        return fetch(`${this._url}/users/me`, {
+            headers: this._headers
+        })
+            .then(res => {
+                if (res.ok) {
+                    return res.json();
+                }
+                // если ошибка, отклоняем промис
+                return Promise.reject(`Ошибка: ${res.status}`);
             });
-            if (response.ok) {
-                const json = await response.json();
-                return json;
-            } else {
-                console.error('Произошла ошибка!');
-            }
-        }   catch (err) {
-            console.error('Произошла ошибка!', err);
-        }
     }
-    async getInitialCards() {
-        try {
-            const response = await fetch(`${this._url}/cards`, {
+    editUser = (user) => {
+        return fetch(`${this._url}/users/me`, {
+            method: 'PATCH',
+            headers: this._headers,
+            body: JSON.stringify({
+                name: user.name,
+                about: user.about
+            })
+        })
+            .then(res => {
+                if (res.ok) {
+                    return res.json();
+                }
+                // если ошибка, отклоняем промис
+                return Promise.reject(`Ошибка: ${res.status}`);
+            });
+    }
+    getInitialCards = () => {
+        return fetch(`${this._url}/cards`, {
                 headers: this._headers
             })
-            if (response.ok) {
-                const json = await response.json();
-                return json;
-            } else {
-                console.error('Произошла ошибка!');
-            }
-        }   catch (err) {
-            console.error('Произошла ошибка!', err);
-        }
+            .then(res => {
+                if (res.ok) {
+                    return res.json();
+                }
+                // если ошибка, отклоняем промис
+                return Promise.reject(`Ошибка: ${res.status}`);
+            });
     }
-    async addCard(card) {
-        try {
-            const response = await fetch(`${this._url}/cards`, {
+    addCard = (card) => {
+        return fetch(`${this._url}/cards`, {
                 method: 'POST',
                 headers: this._headers,
                 body: JSON.stringify({
                   name: card.name,
                   link: card.link
                 })
+            })
+            .then(res => {
+                if (res.ok) {
+                    return res.json();
+                }
+                // если ошибка, отклоняем промис
+                return Promise.reject(`Ошибка: ${res.status}`);
             });
-            if (response.ok) {
-                return await response.json();
-            } else {
-                console.error('Произошла ошибка!');
-            }
-        }   catch (err) {
-            console.error('Произошла ошибка!', err);
-        }
     }
-    async deleteCard(cardId) {
-        try {
-            const response = await fetch(`${this._url}/cards/${cardId}`, {
+    deleteCard = (cardId) => {
+        return fetch(`${this._url}/cards/${cardId}`, {
                 method: 'DELETE',
                 headers: this._headers,
-              });
-              if (response.ok) {
-                console.log(`response OK DeleteCard ${response.ok}`)
-                return await response.json();
-              }
-        }   catch (err) {
-            console.error('Произошла ошибка!', err);
-        }
+            })
+            .then(res => {
+                if (res.ok) {
+                    return res.json();
+                }
+                // если ошибка, отклоняем промис
+                return Promise.reject(`Ошибка: ${res.status}`);
+            });
     }
-    async likeCard(card) {
-        try {
-            const response = await fetch(`${this._url}/cards/${card._id}/likes`, {
+    likeCard = (card) => {
+        return fetch(`${this._url}/cards/${card._id}/likes`, {
                 method: 'PUT',
                 headers: this._headers,
-              });
-              if (response.ok) {
-                return await response.json();
-              }
-        }   catch (err) {
-            console.error('Произошла ошибка!', err);
-        }
+                })
+            .then(res => {
+                if (res.ok) {
+                    return res.json();
+                }
+                // если ошибка, отклоняем промис
+                return Promise.reject(`Ошибка: ${res.status}`);
+            });
     }
-    async disLikeCard(card) {
-        try {
-            const response = await fetch(`${this._url}/cards/${card._id}/likes`, {
+    disLikeCard = (card) => {
+        return fetch(`${this._url}/cards/${card._id}/likes`, {
                 method: 'DELETE',
                 headers: this._headers,
-              });
-              if (response.ok) {
-                return await response.json();
-              }
-        }   catch (err) {
-            console.error('Произошла ошибка!', err);
-        }
+            })
+            .then(res => {
+                if (res.ok) {
+                    return res.json();
+                }
+                // если ошибка, отклоняем промис
+                return Promise.reject(`Ошибка: ${res.status}`);
+            });
     }
-    async editAvatar(user) {
-        try {
-            const response = await fetch(`${this._url}/users/me/avatar`, {
+    editAvatar = (user) => {
+        return fetch(`${this._url}/users/me/avatar`, {
                 method: 'PATCH',
                 headers: this._headers,
                 body: JSON.stringify({
                     avatar: user.avatar,
                 })
+            })
+            .then(res => {
+                if (res.ok) {
+                    return res.json();
+                }
+                // если ошибка, отклоняем промис
+                return Promise.reject(`Ошибка: ${res.status}`);
             });
-            if (response.ok) {
-                const json = await response.json();
-                return json;
-            } else {
-                console.error('Произошла ошибка!');
-            }
-        }   catch (err) {
-            console.error('Произошла ошибка!', err);
-        }
     }
 }

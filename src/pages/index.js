@@ -23,6 +23,13 @@ const api = new Api(apiConfig);
 //----------------------  РЕДАКТИРОВАНИЕ ПРОФИЛЯ --------- НАЧАЛО
 const user = new UserInfo({ nameSelector: '.profile-text-info__full-name', infoSelector: '.profile-text-info__description', avatarSelector: '.profile-info__avatar' });
 
+// api.getUser()
+//   .then(res => {
+//     console.log(`response getUser ${res}`)
+//     user.setUserInfo(res)
+//   })
+//   .catch((err) => console.error('Произошла ошибка!', err))
+
 (async function () {
     user.setUserInfo(await api.getUser());
 })();
