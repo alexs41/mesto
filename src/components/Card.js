@@ -21,38 +21,44 @@ export default class Card {
           .cloneNode(true);
         return cardElement;
     }
-    async _likeCard() {
-        try {
-            if (!this._likeButton.classList.contains('like-container__like-button_active')) {
-                this._likeButton.classList.add('like-container__like-button_active');
-                this.card = await this._api.likeCard(this.card);
-                this._likeCounter.textContent = this.card.likes.length;
-            } else {
-                this._likeButton.classList.remove('like-container__like-button_active');
-                this.card = await this._api.disLikeCard(this.card);
-                this._likeCounter.textContent = this.card.likes.length;
-            }
-        } catch (err) {
-            console.error('Произошла ошибка!', err);
+    _likeCard() {
+        if (!this._likeButton.classList.contains('like-container__like-button_active')) {
+            this._api.likeCard(this.card)
+                .then(res => {
+                    this.card = res;
+                    this._likeButton.classList.add('like-container__like-button_active');
+                    this._likeCounter.textContent = this.card.likes.length;
+                })
+                .catch(err => {
+                    console.log(`Ошибка! ${err}`); // выведем ошибку в консоль
+                });
+        } else {
+            this._api.disLikeCard(this.card)
+                .then(res => {
+                    this.card = res;
+                    this._likeButton.classList.remove('like-container__like-button_active');
+                    this._likeCounter.textContent = this.card.likes.length;
+                })
+                .catch(err => {
+                    console.log(`Ошибка! ${err}`); // выведем ошибку в консоль
+                });
         }
-        
     }
-    async _deleteCard() {
-        try {
-            await this._api.deleteCard(this.card._id);
-            this._element.remove();
-            this._element = null;
-        } catch (err) {
-            console.error('Произошла ошибка!', err);
-        }
+    _deleteCard() {
+        this._api.deleteCard(this.card._id)
+            .then(() => {
+                this._element.remove();
+                this._element = null;
+            })
+            .catch(err => {
+                console.log(`Ошибка! ${err}`); // выведем ошибку в консоль
+            });
     }
     _setEventListeners = () => {
         this._image.addEventListener("click", () => this._handleCardClick(this.card.name, this.card.link));
         this._likeButton.addEventListener('click', () => this._likeCard());
         if (this._thashButton) {
             this._thashButton.addEventListener('click', () => this._popupConfirmDelete.open(this._element, this.card));
-            //this._handleDeleteClick(this.card._id)
-            // this._deleteCard()
         };
     }
     render = () => {
@@ -67,7 +73,6 @@ export default class Card {
         } else {
             console.log(`Owner id ${this.card.owner._id} and User id ${this._user.id}`);
         };
-        // debugger;
         this.card.likes.some( (likeObj) => {
             if (likeObj._id == this._user.id) {
                 this._likeButton.classList.add('like-container__like-button_active');
