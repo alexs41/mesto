@@ -70,8 +70,6 @@ export default class Card {
         this._setEventListeners();
         if (this.card.owner._id !== this._user.id) {
             this._thashButton.remove();
-        } else {
-            console.log(`Owner id ${this.card.owner._id} and User id ${this._user.id}`);
         };
         this.card.likes.some( (likeObj) => {
             if (likeObj._id == this._user.id) {

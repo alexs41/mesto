@@ -23,50 +23,41 @@ const api = new Api(apiConfig);
 //----------------------  РЕДАКТИРОВАНИЕ ПРОФИЛЯ --------- НАЧАЛО
 const user = new UserInfo({ nameSelector: '.profile-text-info__full-name', infoSelector: '.profile-text-info__description', avatarSelector: '.profile-info__avatar' });
 
-// api.getUser()
-//   .then(res => {
-//     console.log(`response getUser ${res}`)
-//     user.setUserInfo(res)
-//   })
-//   .catch((err) => console.error('Произошла ошибка!', err))
-
-(async function () {
-    user.setUserInfo(await api.getUser());
-})();
-
 profileEditButton.addEventListener('click', function () {
   popupEditProfile.setInputValues(user.getUserInfo());
   popupEditProfile.open();
 }); // обработчик на кнопку открытия попап редактирования профиля
 
 // созданиие popupEditProfile экземпляра класса PopupWithForm
-const popupEditProfile = new PopupWithForm('.popup_edit-profile', async () => {
-  
-  try {
-    popupEditProfile.handleSaving();
-    const inputValuesObj = popupEditProfile.getInputValues();
-    user.setUserInfo(await api.editUser(inputValuesObj));
-    // получаем данные из формы и вставляем в профиль
-    popupEditProfile.close();
-    popupEditProfile.handleSavingComplete();
-    formValidProfile.resetValidation();
-  } catch (err) {
-    console.error('Произошла ошибка!', err);
-  }
-  
+const popupEditProfile = new PopupWithForm('.popup_edit-profile', () => {
+  popupEditProfile.handleSaving();
+  const inputValuesObj = popupEditProfile.getInputValues();
+  api.editUser(inputValuesObj)
+    .then(userData => {
+      // получаем данные из формы и вставляем в профиль
+      user.setUserInfo(userData);
+      popupEditProfile.close();
+      formValidProfile.resetValidation();
+    })
+    .catch(err => console.error('Произошла ошибка!', err))
+    .finally(() => popupEditProfile.handleSavingComplete());
 });
 popupEditProfile.setEventListeners(); // Установка слушаталей на popupEditProfile
 
 //----------------------  СОЗДАНИЕ КАРТОЧЕК --------- НАЧАЛО
+
+
 function createCard(card) {
   return new Card(card, templateSelector, handleCardClick, user, api, popupConfirmDelete).render();
 }
 let initialCardsObj = [];
 let cardsList = undefined;
 
-(async function () {
-  try {
-    const initialCards = (await api.getInitialCards());
+Promise.all([api.getUser(), api.getInitialCards()])
+  .then(([userData, initialCards]) => {
+    // тут установка данных пользователя
+    user.setUserInfo(userData);
+    // и тут отрисовка карточек
     initialCardsObj = initialCards.map( card => {
       return createCard(card);
     });
@@ -80,10 +71,9 @@ let cardsList = undefined;
       '.elements'
     );
     cardsList.renderItems();
-  } catch (err) {
-    console.error('Произошла ошибка!', err);
-  }
-})();
+  })
+  .catch(err => console.error('Произошла ошибка!', err));
+
 //----------------------  СОЗДАНИЕ КАРТОЧЕК --------- КОНЕЦ
 
 function handleCardClick(name, link) {
@@ -114,18 +104,19 @@ const popupConfirmDelete = new PopupConfirm('.popup_confirm', () => {
 popupConfirmDelete.setEventListeners(); // Установка слушаталей на popupAddElement
 
 //------------------------ popupAddElement --------------------------
-const popupAddElement = new PopupWithForm('.popup_add-element', async () => {
-  try {
+const popupAddElement = new PopupWithForm('.popup_add-element', () => {
     popupAddElement.handleSaving();
     const inputValuesObj = popupAddElement.getInputValues();
-    const newCard = await api.addCard(inputValuesObj);
-    cardsList.renderer(createCard(newCard));
-    popupAddElement.close();
-    popupAddElement.handleSavingComplete();
-  } catch (err) {
-    console.error('Произошла ошибка!', err);
-  }
+    api.addCard(inputValuesObj)
+      .then(newCard => {
+        // отрисовываем и добавляем карточку
+        cardsList.renderer(createCard(newCard));
+        popupAddElement.close();
+      })
+      .catch(err => console.error('Произошла ошибка!', err))
+      .finally(() => popupAddElement.handleSavingComplete());
 });
+
 popupAddElement.setEventListeners(); // Установка слушаталей на popupAddElement
 addElementButton.addEventListener('click', function () { // обработчик на кнопку форму добавления элемента
   formValidCard.resetValidation()
@@ -133,19 +124,17 @@ addElementButton.addEventListener('click', function () { // обработчик
 });
 
 //------------------------ popupEditAvatar --------------------------
-const popupEditAvatar = new PopupWithForm('.popup_edit-avatar', async () => {
-  try {
+const popupEditAvatar = new PopupWithForm('.popup_edit-avatar', () => {
     popupEditAvatar.handleSaving();
     const inputValuesObj = popupEditAvatar.getInputValues();
-    
-    user.setUserInfo(await api.editAvatar(inputValuesObj));
-    // получаем данные из формы и вставляем в профиль
-    popupEditAvatar.close();
-    popupEditAvatar.handleSavingComplete();
-  } catch (err) {
-    console.error('Произошла ошибка!', err);
-  }
-  
+    api.editAvatar(inputValuesObj)
+      .then(userData => {
+        // получаем данные userData на страницу
+        user.setUserInfo(userData);
+        popupEditAvatar.close();
+      })
+      .catch(err => console.error('Произошла ошибка!', err))
+      .finally(() => popupEditAvatar.handleSavingComplete());
 });
 popupEditAvatar.setEventListeners(); // Установка слушаталей на popupAddElement
 
