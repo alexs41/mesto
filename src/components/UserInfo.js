@@ -10,10 +10,6 @@ export default class UserInfo {
         return { "name": this._name.textContent, "about": this._info.textContent };
 
     }
-    // setUserInfo(user) {// вставляем информацию в профиль
-    //     this._name.textContent = user["full-name-input"];
-    //     this._info.textContent = user["description-input"];
-    // }
     setUserInfo(user) {// вставляем информацию в профиль
         if (user.name) { this._name.textContent = user.name;};
         if (user.about) { this._info.textContent = user.about;};

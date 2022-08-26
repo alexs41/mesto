@@ -3,17 +3,18 @@ export default class Api {
         this._url = config.url;
         this._headers = config.headers;
     }
+    _checkResponse(res) {
+        if (res.ok) {
+            return res.json();
+        }
+        // если ошибка, отклоняем промис
+        return Promise.reject(`Ошибка: ${res.status}`);
+    }
     getUser = () => {
         return fetch(`${this._url}/users/me`, {
             headers: this._headers
         })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                // если ошибка, отклоняем промис
-                return Promise.reject(`Ошибка: ${res.status}`);
-            });
+        .then(this._checkResponse);
     }
     editUser = (user) => {
         return fetch(`${this._url}/users/me`, {
@@ -24,25 +25,13 @@ export default class Api {
                 about: user.about
             })
         })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                // если ошибка, отклоняем промис
-                return Promise.reject(`Ошибка: ${res.status}`);
-            });
+        .then(this._checkResponse);
     }
     getInitialCards = () => {
         return fetch(`${this._url}/cards`, {
                 headers: this._headers
             })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                // если ошибка, отклоняем промис
-                return Promise.reject(`Ошибка: ${res.status}`);
-            });
+            .then(this._checkResponse);
     }
     addCard = (card) => {
         return fetch(`${this._url}/cards`, {
@@ -53,52 +42,28 @@ export default class Api {
                   link: card.link
                 })
             })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                // если ошибка, отклоняем промис
-                return Promise.reject(`Ошибка: ${res.status}`);
-            });
+            .then(this._checkResponse);
     }
     deleteCard = (cardId) => {
         return fetch(`${this._url}/cards/${cardId}`, {
                 method: 'DELETE',
                 headers: this._headers,
             })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                // если ошибка, отклоняем промис
-                return Promise.reject(`Ошибка: ${res.status}`);
-            });
+            .then(this._checkResponse);
     }
     likeCard = (card) => {
         return fetch(`${this._url}/cards/${card._id}/likes`, {
                 method: 'PUT',
                 headers: this._headers,
                 })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                // если ошибка, отклоняем промис
-                return Promise.reject(`Ошибка: ${res.status}`);
-            });
+                .then(this._checkResponse);
     }
     disLikeCard = (card) => {
         return fetch(`${this._url}/cards/${card._id}/likes`, {
                 method: 'DELETE',
                 headers: this._headers,
             })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                // если ошибка, отклоняем промис
-                return Promise.reject(`Ошибка: ${res.status}`);
-            });
+            .then(this._checkResponse);
     }
     editAvatar = (user) => {
         return fetch(`${this._url}/users/me/avatar`, {
@@ -108,12 +73,6 @@ export default class Api {
                     avatar: user.avatar,
                 })
             })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                // если ошибка, отклоняем промис
-                return Promise.reject(`Ошибка: ${res.status}`);
-            });
+            .then(this._checkResponse);
     }
 }
